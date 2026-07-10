@@ -1,0 +1,61 @@
+Category	Subcategory	Reference baseline	Consolidated view	DC1	DC2	DC3
+System	Security System Extension	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+System	System Integrity	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+System	IPsec Driver	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+System	Other System Events	Reference only	Consolidated only	Success and Failure	Success and Failure	Success and Failure
+System	Security State Change	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Logon/Logoff	Logon	Reference only	Consolidated only	Success and Failure	Success and Failure	Success and Failure
+Logon/Logoff	Logoff	Reference only	Consolidated only	Success and Failure	Success	Success
+Logon/Logoff	Account Lockout	Reference only	Consolidated only	Success and Failure	Success and Failure	Success and Failure
+Logon/Logoff	IPsec Main Mode	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Logon/Logoff	IPsec Quick Mode	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Logon/Logoff	IPsec Extended Mode	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Logon/Logoff	Special Logon	Reference only	Consolidated only	Success and Failure	Success and Failure	Success and Failure
+Logon/Logoff	Other Logon/Logoff Events	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Logon/Logoff	Network Policy Server	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Logon/Logoff	User / Device Claims	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Logon/Logoff	Group Membership	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Logon/Logoff	Access Rights	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Object Access	File System	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Object Access	Registry	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Object Access	Kernel Object	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Object Access	SAM	Reference only	Consolidated only	Success and Failure	Success	Success
+Object Access	Certification Services	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Object Access	Application Generated	Reference only	Consolidated only	Success and Failure	Success	Success
+Object Access	Handle Manipulation	Reference only	Consolidated only	Success and Failure	Success	Success
+Object Access	File Share	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Object Access	Filtering Platform Packet Drop	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Object Access	Filtering Platform Connection	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Object Access	Other Object Access Events	Reference only	Consolidated only	Success and Failure	Success	Success
+Object Access	Detailed File Share	Reference only	Consolidated only	Success and Failure	Success	Success
+Object Access	Removable Storage	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Object Access	Central Policy Staging	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Privilege Use	Non Sensitive Privilege Use	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Privilege Use	Other Privilege Use Events	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Privilege Use	Sensitive Privilege Use	Reference only	Consolidated only	Success and Failure	Success and Failure	Success and Failure
+Detailed Tracking	Process Creation	Reference only	Consolidated only	No Auditing	Success	Success
+Detailed Tracking	Process Termination	Reference only	Consolidated only	No Auditing	Success	Success
+Detailed Tracking	DPAPI Activity	Reference only	Consolidated only	No Auditing	No Auditing	No Auditing
+Detailed Tracking	RPC Events	Reference only	Consolidated only	No Auditing	No Auditing	No Auditing
+Detailed Tracking	Plug and Play Events	Reference only	Consolidated only	No Auditing	No Auditing	No Auditing
+Detailed Tracking	Token Right Adjusted Events	Reference only	Consolidated only	No Auditing	No Auditing	No Auditing
+Policy Change	Audit Policy Change	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Policy Change	Authentication Policy Change	Reference only	Consolidated only	Success and Failure	Success and Failure	Success and Failure
+Policy Change	Authorization Policy Change	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Policy Change	MPSSVC Rule-Level Policy Change	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Policy Change	Filtering Platform Policy Change	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Policy Change	Other Policy Change Events	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Account Management	Computer Account Management	Reference only	Consolidated only	Success and Failure	Success	Success
+Account Management	Security Group Management	Reference only	Consolidated only	Success and Failure	Success	Success
+Account Management	Distribution Group Management	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Account Management	Application Group Management	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Account Management	Other Account Management Events	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Account Management	User Account Management	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+DS Access	Directory Service Access	Reference only	Consolidated only	Success and Failure	Success	Success
+DS Access	Directory Service Changes	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+DS Access	Directory Service Replication	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+DS Access	Detailed Directory Service Replication	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Account Logon	Kerberos Service Ticket Operations	Reference only	Consolidated only	Success and Failure	Success and Failure	Success and Failure
+Account Logon	Other Account Logon Events	Reference only	Consolidated only	Success and Failure	No Auditing	No Auditing
+Account Logon	Kerberos Authentication Service	Reference only	Consolidated only	Success and Failure	Success and Failure	Success and Failure
+Account Logon	Credential Validation	Reference only	Consolidated only	Success and Failure	Success and Failure	Success and Failure

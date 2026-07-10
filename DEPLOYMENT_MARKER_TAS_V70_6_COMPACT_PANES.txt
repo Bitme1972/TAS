@@ -1,0 +1,1 @@
+TAS v70.6 compact panes local-ready package. Compact command bar, reduced banner height, true 50/50 result/detail panes, visible scrollbars.

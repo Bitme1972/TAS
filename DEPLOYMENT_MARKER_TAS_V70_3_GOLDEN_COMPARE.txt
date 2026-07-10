@@ -1,0 +1,4 @@
+TAS_V70_3_GOLDEN_COMPARE_BUILD
+Expected visible page marker: Golden DC audit baseline comparison
+Expected second marker: Load up to 8 DC auditpol file/s
+This package includes the commercial-style 8 DCs against one Golden audit baseline matrix.

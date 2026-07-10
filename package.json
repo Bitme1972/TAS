@@ -1,0 +1,46 @@
+{
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc && vite build && npm run prepare:cloudflare-dist && npm run test:parity && npm run test:v70 && npm run test:commercial-parity && npm run test:visible-input && npm run test:golden-compare && npm run test:left-navigation && npm run test:professional-layout && npm run test:compact-panes && npm run test:original-pane-parity && npm run test:desktop-viewport && npm run test:customer-before-after && npm run test:redundancy-clean && npm run test:output-friendly && npm run test:premium-golden-assurance && npm run test:event-intel && npm run test:sortable-event-table && npm run test:event-source-column && npm run test:event-column-order && npm run test:standalone-direct-deploy && npm run test:aurora && npm run test:deploy-runner && npm run test:project-separation",
+    "preview": "vite preview --host 0.0.0.0",
+    "test:parity": "node scripts/test-desktop-parity.cjs",
+    "test:v70": "node scripts/test-v70-cloudflare.cjs",
+    "test:commercial-parity": "node scripts/test-v70-commercial-parity.cjs",
+    "test:visible-input": "node scripts/test-v70-visible-user-input.cjs",
+    "test:golden-compare": "node scripts/test-v70-golden-compare.cjs",
+    "prepare:cloudflare-dist": "node scripts/prepare-cloudflare-dist.cjs",
+    "test:left-navigation": "node scripts/test-v70-left-navigation.cjs",
+    "test:professional-layout": "node scripts/test-v70-professional-layout.cjs",
+    "test:compact-panes": "node scripts/test-v70-compact-panes.cjs",
+    "test:original-pane-parity": "node scripts/test-v70-original-pane-parity.cjs",
+    "test:desktop-viewport": "node scripts/test-v70-desktop-viewport.cjs",
+    "test:customer-before-after": "node scripts/test-v70-customer-before-after.cjs",
+    "test:redundancy-clean": "node scripts/test-v70-redundancy-clean.cjs",
+    "test:output-friendly": "node scripts/test-v70-output-friendly.cjs",
+    "test:premium-golden-assurance": "node scripts/test-v70-premium-golden-assurance.cjs",
+    "test:event-intel": "node scripts/test-v70-event-intel.cjs",
+    "test:sortable-event-table": "node scripts/test-v70-sortable-event-table.cjs",
+    "test:event-source-column": "node scripts/test-v70-event-source-column.cjs",
+    "test:event-column-order": "node scripts/test-v70-event-column-order.cjs",
+    "test:standalone-direct-deploy": "node scripts/test-v70-standalone-and-direct-deploy.cjs",
+    "test:aurora": "node scripts/test-v70-18-aurora.cjs",
+    "test:deploy-runner": "node scripts/test-v70-18-deploy-runner.cjs",
+    "test:project-separation": "node scripts/test-tas-project-separation.cjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "typescript": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "lucide-react": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "wrangler": "latest",
+    "@cloudflare/workers-types": "latest"
+  },
+  "name": "tas-v70-18-aurora-command-centre",
+  "version": "70.18.0"
+}

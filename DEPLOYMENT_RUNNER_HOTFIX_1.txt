@@ -1,0 +1,11 @@
+TAS v70.18 AURORA deployment runner hotfix 1
+
+Corrects the first-time Git deployment copy stage so every root-level release file is copied into the TAS repository.
+The previous runner omitted RUN_ME_LOCAL_CLOUDFLARE_READY.ps1, causing the inherited v70.17 regression gate to fail before commit.
+
+Targets remain:
+- Source: C:\TAS\TAS_v70_18_AURORA
+- Local clone: C:\TAS\tas
+- GitHub: https://github.com/Bitme1972/tas.git
+- Branch: main
+- Cloudflare project: tas

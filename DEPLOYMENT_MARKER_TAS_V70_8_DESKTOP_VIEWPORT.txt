@@ -1,0 +1,1 @@
+TAS v70.8 desktop viewport layout marker: compact toolbar, immediate visible result rows, true 50/50 grid/detail panes.

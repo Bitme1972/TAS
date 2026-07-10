@@ -1,0 +1,63 @@
+TAS v70.18 AURORA - EXACT DEPLOYMENT GUIDE
+==========================================
+
+A. PREPARE THE FOLDERS
+1. Open C:\TAS
+2. Rename any previous C:\TAS\TAS_v70_18_AURORA folder to TAS_v70_18_AURORA_OLD
+3. Extract the complete release ZIP directly into C:\TAS
+4. Confirm this exact file exists:
+   C:\TAS\TAS_v70_18_AURORA\RUN_THIS_NOW_DEPLOY_TAS.cmd
+5. Leave C:\TAS\tas in place. The runner recognises and updates it safely.
+
+B. CONFIRM CLOUDFLARE SETTINGS
+1. Sign in to Cloudflare
+2. Open Workers & Pages
+3. Open the Pages project named tas
+4. Open Settings
+5. Open Builds & deployments or Build configurations
+6. Confirm:
+   Production branch: main
+   Framework preset: Vite, or None if Vite is not shown
+   Build command: npm run build
+   Build output directory: dist
+   Root directory: blank
+7. Save changes
+
+C. RELEASE TAS
+1. Double-click RUN_THIS_NOW_DEPLOY_TAS.cmd
+2. Allow the PowerShell window to run
+3. The runner performs two full builds and the regression gates
+4. Do not close the window
+5. Success is shown as:
+   [10/10] RELEASE COMPLETE
+
+D. VERIFY GITHUB
+1. Open GitHub repository Bitme1972/tas
+2. Refresh the Code page
+3. Confirm the newest commit says:
+   Deploy TAS v70.18 AURORA Command Centre
+4. Open package.json and confirm:
+   name: tas-v70-18-aurora-command-centre
+   version: 70.18.0
+
+E. VERIFY CLOUDFLARE
+1. Return to Workers & Pages > tas > Deployments
+2. A new deployment from main should start automatically
+3. Wait for Status: Success
+4. Open https://tas-duo.pages.dev
+5. Open https://tas-duo.pages.dev/studio?v=718
+6. Press Ctrl+F5 in Chrome
+7. Confirm the AURORA Command Centre loads
+
+F. CONNECT AUDITPOL.COM
+1. In Workers & Pages > tas, open Custom domains
+2. Select Set up a custom domain
+3. Enter auditpol.com
+4. Continue and activate the domain
+5. Wait until the domain status becomes Active
+6. Test https://auditpol.com and https://auditpol.com/studio?v=718
+
+IMPORTANT
+---------
+TAS uses only C:\TAS, GitHub Bitme1972/tas and Cloudflare Pages project tas.
+Do not place this package inside another product folder and do not connect it to another product repository or Cloudflare project.

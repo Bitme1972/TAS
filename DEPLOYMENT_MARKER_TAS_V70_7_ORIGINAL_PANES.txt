@@ -1,0 +1,3 @@
+TAS v70.7 original desktop pane parity build marker.
+Local-first Cloudflare-ready package.
+Assurance Results now uses top findings grid and bottom selected finding details pane 50/50.

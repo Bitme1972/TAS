@@ -1,0 +1,1 @@
+TAS v70.5 professional responsive layout local-ready package. Left nav compact auto-scaling, 50/50 results/details panes, visible scrollbars, professional buttons.

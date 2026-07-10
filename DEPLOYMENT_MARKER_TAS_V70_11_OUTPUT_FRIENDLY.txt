@@ -1,0 +1,1 @@
+TAS v70.11 output friendliness: HTML reports include edit and print icon buttons, wide-table horizontal sliders, readable Word export layout, visible output scrollbars.

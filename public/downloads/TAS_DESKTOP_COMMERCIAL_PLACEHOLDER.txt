@@ -1,0 +1,9 @@
+TAS Desktop Commercial Standalone placeholder
+
+Place the signed customer desktop package here when ready, for example:
+- TAS_Desktop_Commercial.msi
+- TAS_Desktop_Commercial.zip
+- license.taslic
+- SHA256SUMS.txt
+
+The web studio links to this folder as the standalone commercial product attachment point.

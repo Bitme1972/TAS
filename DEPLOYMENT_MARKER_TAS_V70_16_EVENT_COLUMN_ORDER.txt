@@ -1,0 +1,1 @@
+TAS v70.16 final Event ID column order: Event ID, Name, Type, Category, Subcategory, Priority, Analyst lane, Outcome, Key fields, Related, Collect from.

@@ -1,0 +1,3277 @@
+[
+  {
+    "Category": "Advanced Coverage - Logging Platform",
+    "Subcategory": "Windows Security Log Health and Clearing",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Loss, clearing or interruption of Windows event logs can hide attacker activity and break the evidential chain.",
+    "DetectionUseCases": [
+      "Security log clearing",
+      "Event pipeline failure",
+      "Tamper investigation"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 1100, 1101, 1102, 1104, 1105",
+      "System: 6005, 6006, 6008"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Monitor Security log clearing, service failure and event forwarding interruptions as high-priority conditions.",
+    "CoverageLayer": "Collection Health and Log Integrity",
+    "PrimaryDataSources": "Security and System logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-001",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Logging Platform :: Windows Security Log Health and Clearing",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 1100, 1101, 1102, 1104, 1105",
+      "System: 6005, 6006, 6008"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Windows System"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Loss, clearing or interruption of Windows event logs can hide attacker activity and break the evidential chain.",
+    "MITRE_ATTCK": [
+      "T1685.005 - Disable or Modify Tools: Clear Windows Event Logs",
+      "T1070.001 - Indicator Removal: Clear Windows Event Logs",
+      "T1562.002 - Impair Defenses: Disable Windows Event Logging"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them. Use Windows Security log health events and collector or agent evidence to prove delivery, freshness and clearing/tamper visibility.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Windows security monitoring",
+    "MicrosoftFrameworkControl": "Collection Health and Log Integrity > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Logging Platform",
+    "Subcategory": "Windows Event Forwarding or Agent Collection Health",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Silent collection failure creates false assurance and prevents timely incident response.",
+    "DetectionUseCases": [
+      "Missing telemetry detection",
+      "Collector health",
+      "Agent tampering"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 1100, 1101, 1104, 1105",
+      "System: 7036, 7040, 7045",
+      "Sysmon: 4, 16"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Alert on collection outages, event-forwarding failures, agent stop/start and unexpected configuration changes.",
+    "CoverageLayer": "Collection Health and Log Integrity",
+    "PrimaryDataSources": "Security, System and Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-002",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Logging Platform :: Windows Event Forwarding or Agent Collection Health",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 1100, 1101, 1104, 1105",
+      "System: 7036, 7040, 7045",
+      "Sysmon: 4, 16"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Windows System",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Silent collection failure creates false assurance and prevents timely incident response.",
+    "MITRE_ATTCK": [
+      "T1685 - Disable or Modify Tools",
+      "T1562.001 - Impair Defenses: Disable or Modify Tools",
+      "T1562.002 - Impair Defenses: Disable Windows Event Logging"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them. Use Windows Security log health events and collector or agent evidence to prove delivery, freshness and clearing/tamper visibility.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Collection Health and Log Integrity > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Endpoint Telemetry",
+    "Subcategory": "Sysmon Process Creation and Parent/Child Lineage",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for sysmon process creation and parent/child lineage activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Suspicious process execution",
+      "Parent child process anomaly",
+      "Command-line investigation"
+    ],
+    "ExpectedEventIDs": [
+      "Sysmon: 1",
+      "Security: 4688",
+      "PowerShell: 4103, 4104"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect Sysmon process creation with command line, hashes, parent process and user context.",
+    "CoverageLayer": "Endpoint Telemetry",
+    "PrimaryDataSources": "Microsoft-Windows-Sysmon/Operational and Security",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-003",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Endpoint Telemetry :: Sysmon Process Creation and Parent/Child Lineage",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Sysmon: 1",
+      "Security: 4688",
+      "PowerShell: 4103, 4104"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Windows Security",
+      "Microsoft-Windows-PowerShell/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for sysmon process creation and parent/child lineage activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1059 - Command and Scripting Interpreter",
+      "T1059.001 - PowerShell",
+      "T1106 - Native API",
+      "T1057 - Process Discovery"
+    ],
+    "MicrosoftBestPractice": "Microsoft Sysinternals guidance: Sysmon is a separate telemetry source. It must be installed, configured and verified in Microsoft-Windows-Sysmon/Operational. Do not treat Sysmon coverage as an auditpol subcategory. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/sysmon/how-to-enable-sysmon"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft PowerShell logging",
+    "MicrosoftFrameworkControl": "Endpoint Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Sysmon documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Endpoint Telemetry",
+    "Subcategory": "Sysmon Network Connections",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Reduces visibility gaps for sysmon network connections activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Endpoint network beaconing",
+      "Suspicious outbound connections",
+      "Process-to-network correlation"
+    ],
+    "ExpectedEventIDs": [
+      "Sysmon: 3, 22",
+      "Security: 5156, 5157",
+      "Firewall: 2004, 2005, 2006"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect process-attributed outbound network connections and DNS query telemetry for endpoint correlation.",
+    "CoverageLayer": "Endpoint Telemetry",
+    "PrimaryDataSources": "Sysmon, Security Filtering Platform and Firewall logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-004",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Endpoint Telemetry :: Sysmon Network Connections",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Sysmon: 3, 22",
+      "Security: 5156, 5157",
+      "Firewall: 2004, 2005, 2006"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Windows Security",
+      "Microsoft-Windows-Windows Firewall With Advanced Security/Firewall"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for sysmon network connections activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1049 - System Network Connections Discovery",
+      "T1021 - Remote Services",
+      "T1105 - Ingress Tool Transfer",
+      "T1071 - Application Layer Protocol"
+    ],
+    "MicrosoftBestPractice": "Microsoft Sysinternals guidance: Sysmon is a separate telemetry source. It must be installed, configured and verified in Microsoft-Windows-Sysmon/Operational. Do not treat Sysmon coverage as an auditpol subcategory. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/sysmon/how-to-enable-sysmon"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Endpoint Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Sysmon documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Endpoint Telemetry",
+    "Subcategory": "Sysmon File Creation, Deletion and Alternate Data Streams",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for sysmon file creation, deletion and alternate data streams activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Malware staging",
+      "Payload drops",
+      "Alternate data stream abuse"
+    ],
+    "ExpectedEventIDs": [
+      "Sysmon: 2, 11, 15, 23, 26",
+      "Security: 4663, 4670"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect file creation, deletion and stream-hash telemetry for sensitive paths and executable content.",
+    "CoverageLayer": "Endpoint Telemetry",
+    "PrimaryDataSources": "Sysmon and Security Object Access",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-005",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Endpoint Telemetry :: Sysmon File Creation, Deletion and Alternate Data Streams",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Sysmon: 2, 11, 15, 23, 26",
+      "Security: 4663, 4670"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Windows Security"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for sysmon file creation, deletion and alternate data streams activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1005 - Data from Local System",
+      "T1105 - Ingress Tool Transfer",
+      "T1027 - Obfuscated Files or Information",
+      "T1564 - Hide Artifacts"
+    ],
+    "MicrosoftBestPractice": "Microsoft Sysinternals guidance: Sysmon is a separate telemetry source. It must be installed, configured and verified in Microsoft-Windows-Sysmon/Operational. Do not treat Sysmon coverage as an auditpol subcategory. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/sysmon/how-to-enable-sysmon"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Endpoint Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Sysmon documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Endpoint Telemetry",
+    "Subcategory": "Sysmon Registry Persistence Coverage",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for sysmon registry persistence coverage activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Run key persistence",
+      "Service configuration changes",
+      "Registry tampering"
+    ],
+    "ExpectedEventIDs": [
+      "Sysmon: 12, 13, 14",
+      "Security: 4657, 4663"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect registry creation, value set and rename events for persistence-relevant paths.",
+    "CoverageLayer": "Endpoint Telemetry",
+    "PrimaryDataSources": "Sysmon and Security Registry auditing",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-006",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Endpoint Telemetry :: Sysmon Registry Persistence Coverage",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Sysmon: 12, 13, 14",
+      "Security: 4657, 4663"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Windows Security"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for sysmon registry persistence coverage activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1112 - Modify Registry",
+      "T1547.001 - Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+      "T1012 - Query Registry"
+    ],
+    "MicrosoftBestPractice": "Microsoft Sysinternals guidance: Sysmon is a separate telemetry source. It must be installed, configured and verified in Microsoft-Windows-Sysmon/Operational. Do not treat Sysmon coverage as an auditpol subcategory. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/sysmon/how-to-enable-sysmon"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Endpoint Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Sysmon documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Endpoint Telemetry",
+    "Subcategory": "Sysmon Driver, Image Load and Security Tool Tamper",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Reduces visibility gaps for sysmon driver, image load and security tool tamper activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Unsigned driver loading",
+      "Credential access",
+      "Security tool configuration change"
+    ],
+    "ExpectedEventIDs": [
+      "Sysmon: 6, 7, 10, 16, 25",
+      "Security: 4612, 5038",
+      "Defender: 5007, 5013"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect driver load, selected image load, process access and Sysmon configuration change events.",
+    "CoverageLayer": "Endpoint Telemetry",
+    "PrimaryDataSources": "Sysmon, Security and Defender",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-007",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Endpoint Telemetry :: Sysmon Driver, Image Load and Security Tool Tamper",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Sysmon: 6, 7, 10, 16, 25",
+      "Security: 4612, 5038",
+      "Defender: 5007, 5013"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Windows Security",
+      "Microsoft-Windows-Windows Defender/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for sysmon driver, image load and security tool tamper activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1562.001 - Impair Defenses: Disable or Modify Tools",
+      "T1014 - Rootkit",
+      "T1543.003 - Create or Modify System Process: Windows Service"
+    ],
+    "MicrosoftBestPractice": "Microsoft Sysinternals guidance: Sysmon is a separate telemetry source. It must be installed, configured and verified in Microsoft-Windows-Sysmon/Operational. Do not treat Sysmon coverage as an auditpol subcategory. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/sysmon/how-to-enable-sysmon"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft Defender Antivirus / Microsoft Defender XDR",
+    "MicrosoftFrameworkControl": "Endpoint Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Sysmon documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Endpoint Telemetry",
+    "Subcategory": "Sysmon Named Pipe and Inter-process Activity",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Medium",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for sysmon named pipe and inter-process activity activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "C2 pipe usage",
+      "Lateral movement tooling",
+      "Process communication analysis"
+    ],
+    "ExpectedEventIDs": [
+      "Sysmon: 17, 18",
+      "Security: 4688"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect named pipe creation and connection events with sensible filtering to reduce noise.",
+    "CoverageLayer": "Endpoint Telemetry",
+    "PrimaryDataSources": "Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-008",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Endpoint Telemetry :: Sysmon Named Pipe and Inter-process Activity",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Sysmon: 17, 18",
+      "Security: 4688"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Windows Security"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for sysmon named pipe and inter-process activity activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1055 - Process Injection",
+      "T1021.002 - Remote Services: SMB / Windows Admin Shares",
+      "T1570 - Lateral Tool Transfer"
+    ],
+    "MicrosoftBestPractice": "Microsoft Sysinternals guidance: Sysmon is a separate telemetry source. It must be installed, configured and verified in Microsoft-Windows-Sysmon/Operational. Do not treat Sysmon coverage as an auditpol subcategory. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/sysmon/how-to-enable-sysmon"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Endpoint Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Sysmon documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Endpoint Telemetry",
+    "Subcategory": "Sysmon WMI Persistence",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for sysmon wmi persistence activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "WMI event filter persistence",
+      "WMI consumer abuse",
+      "WMI troubleshooting"
+    ],
+    "ExpectedEventIDs": [
+      "Sysmon: 19, 20, 21",
+      "WMI-Activity: 5857, 5858, 5859, 5860, 5861"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect Sysmon WMI event filter, consumer and binding events and pair them with WMI-Activity operational telemetry.",
+    "CoverageLayer": "Endpoint Telemetry",
+    "PrimaryDataSources": "Sysmon and Microsoft-Windows-WMI-Activity/Operational",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-009",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Endpoint Telemetry :: Sysmon WMI Persistence",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Sysmon: 19, 20, 21",
+      "WMI-Activity: 5857, 5858, 5859, 5860, 5861"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Microsoft-Windows-WMI-Activity/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for sysmon wmi persistence activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1546.003 - Event Triggered Execution: Windows Management Instrumentation Event Subscription",
+      "T1047 - Windows Management Instrumentation",
+      "T1059.001 - PowerShell"
+    ],
+    "MicrosoftBestPractice": "Microsoft Sysinternals guidance: Sysmon is a separate telemetry source. It must be installed, configured and verified in Microsoft-Windows-Sysmon/Operational. Do not treat Sysmon coverage as an auditpol subcategory. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/sysmon/how-to-enable-sysmon"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft WMI-Activity logging",
+    "MicrosoftFrameworkControl": "Endpoint Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Sysmon documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Endpoint Telemetry",
+    "Subcategory": "Sysmon Clipboard and Process Tampering",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Medium",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for sysmon clipboard and process tampering activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Clipboard collection",
+      "Process hollowing indicators",
+      "Endpoint tamper investigation"
+    ],
+    "ExpectedEventIDs": [
+      "Sysmon: 24, 25",
+      "Security: 4688, 4673, 4674"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect clipboard and process tampering events only where privacy, policy and operational volume are acceptable.",
+    "CoverageLayer": "Endpoint Telemetry",
+    "PrimaryDataSources": "Sysmon and Security",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-010",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Endpoint Telemetry :: Sysmon Clipboard and Process Tampering",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Sysmon: 24, 25",
+      "Security: 4688, 4673, 4674"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Windows Security"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for sysmon clipboard and process tampering activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1115 - Clipboard Data",
+      "T1055 - Process Injection",
+      "T1562.001 - Impair Defenses: Disable or Modify Tools"
+    ],
+    "MicrosoftBestPractice": "Microsoft Sysinternals guidance: Sysmon is a separate telemetry source. It must be installed, configured and verified in Microsoft-Windows-Sysmon/Operational. Do not treat Sysmon coverage as an auditpol subcategory. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/sysmon/how-to-enable-sysmon"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Endpoint Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Sysmon documentation"
+  },
+  {
+    "Category": "Advanced Coverage - PowerShell",
+    "Subcategory": "PowerShell Script Block Logging",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Without script block logging, encoded or fileless PowerShell activity is much harder to reconstruct.",
+    "DetectionUseCases": [
+      "PowerShell attack detection",
+      "Encoded command investigation",
+      "Fileless malware triage"
+    ],
+    "ExpectedEventIDs": [
+      "PowerShell: 4104",
+      "PowerShell: 400, 403, 600"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Enable script block logging with protected event logging where sensitive content exposure is a concern.",
+    "CoverageLayer": "PowerShell Telemetry",
+    "PrimaryDataSources": "Microsoft-Windows-PowerShell/Operational",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-011",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - PowerShell :: PowerShell Script Block Logging",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "PowerShell: 4104",
+      "PowerShell: 400, 403, 600"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-PowerShell/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Without script block logging, encoded or fileless PowerShell activity is much harder to reconstruct.",
+    "MITRE_ATTCK": [
+      "T1059.001 - Command and Scripting Interpreter: PowerShell",
+      "T1027 - Obfuscated Files or Information",
+      "T1140 - Deobfuscate/Decode Files or Information"
+    ],
+    "MicrosoftBestPractice": "Microsoft guidance: PowerShell operational logging, including script block and module logging where appropriate, is separate from auditpol and must be validated in the PowerShell operational channels. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows"
+    ],
+    "MicrosoftFramework": "Microsoft PowerShell logging",
+    "MicrosoftFrameworkControl": "PowerShell Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft PowerShell logging documentation"
+  },
+  {
+    "Category": "Advanced Coverage - PowerShell",
+    "Subcategory": "PowerShell Module and Pipeline Logging",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Reduces visibility gaps for powershell module and pipeline logging activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Command invocation tracing",
+      "Administrative misuse",
+      "Living-off-the-land analysis"
+    ],
+    "ExpectedEventIDs": [
+      "PowerShell: 4103, 4105, 4106",
+      "Security: 4688"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Enable module logging for high-risk modules and collect operational PowerShell events.",
+    "CoverageLayer": "PowerShell Telemetry",
+    "PrimaryDataSources": "Microsoft-Windows-PowerShell/Operational",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-012",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - PowerShell :: PowerShell Module and Pipeline Logging",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "PowerShell: 4103, 4105, 4106",
+      "Security: 4688"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-PowerShell/Operational",
+      "Windows Security"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for powershell module and pipeline logging activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1059.001 - Command and Scripting Interpreter: PowerShell",
+      "T1106 - Native API",
+      "T1027 - Obfuscated Files or Information"
+    ],
+    "MicrosoftBestPractice": "Microsoft guidance: PowerShell operational logging, including script block and module logging where appropriate, is separate from auditpol and must be validated in the PowerShell operational channels. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows"
+    ],
+    "MicrosoftFramework": "Microsoft PowerShell logging",
+    "MicrosoftFrameworkControl": "PowerShell Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft PowerShell logging documentation"
+  },
+  {
+    "Category": "Advanced Coverage - PowerShell",
+    "Subcategory": "PowerShell Transcription Evidence",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Medium",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for powershell transcription evidence activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Administrative session reconstruction",
+      "Privileged action review",
+      "Forensic evidence"
+    ],
+    "ExpectedEventIDs": [
+      "PowerShell: 4103, 4104",
+      "File telemetry: transcript files",
+      "Security: 4688"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Enable transcription for privileged admin workstations and servers where policy permits and protect transcript storage.",
+    "CoverageLayer": "PowerShell Telemetry",
+    "PrimaryDataSources": "PowerShell Operational log and transcript file repository",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-013",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - PowerShell :: PowerShell Transcription Evidence",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "PowerShell: 4103, 4104",
+      "File telemetry: transcript files",
+      "Security: 4688"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-PowerShell/Operational",
+      "File telemetry",
+      "Windows Security"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for powershell transcription evidence activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1059.001 - Command and Scripting Interpreter: PowerShell",
+      "T1552 - Unsecured Credentials",
+      "T1074 - Data Staged"
+    ],
+    "MicrosoftBestPractice": "Microsoft guidance: PowerShell operational logging, including script block and module logging where appropriate, is separate from auditpol and must be validated in the PowerShell operational channels. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows"
+    ],
+    "MicrosoftFramework": "Microsoft PowerShell logging",
+    "MicrosoftFrameworkControl": "PowerShell Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft PowerShell logging documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Defender",
+    "Subcategory": "Microsoft Defender Threat Detection and Remediation",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for microsoft defender threat detection and remediation activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Malware detection",
+      "Remediation failure",
+      "Endpoint compromise triage"
+    ],
+    "ExpectedEventIDs": [
+      "Defender: 1116, 1117, 1118, 1119, 1120",
+      "Security: 4688",
+      "Sysmon: 1, 11"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect Defender detection, remediation, quarantine and failure events into the SIEM.",
+    "CoverageLayer": "Microsoft Defender Telemetry",
+    "PrimaryDataSources": "Microsoft-Windows-Windows Defender/Operational",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-014",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Defender :: Microsoft Defender Threat Detection and Remediation",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Defender: 1116, 1117, 1118, 1119, 1120",
+      "Security: 4688",
+      "Sysmon: 1, 11"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Windows Defender/Operational",
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for microsoft defender threat detection and remediation activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1204 - User Execution",
+      "T1059 - Command and Scripting Interpreter",
+      "T1105 - Ingress Tool Transfer",
+      "T1566 - Phishing"
+    ],
+    "MicrosoftBestPractice": "Microsoft Defender guidance: Defender Antivirus and Defender for Endpoint telemetry uses separate operational event IDs and health/configuration events. Validate collection and freshness independently of auditpol. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-microsoft-defender-antivirus"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft Defender Antivirus / Microsoft Defender XDR",
+    "MicrosoftFrameworkControl": "Microsoft Defender Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Defender documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Defender",
+    "Subcategory": "Microsoft Defender Configuration and Tamper Events",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for microsoft defender configuration and tamper events activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Defender disabled",
+      "Tamper protection investigation",
+      "Security configuration drift"
+    ],
+    "ExpectedEventIDs": [
+      "Defender: 5001, 5004, 5007, 5008, 5013",
+      "Security: 4719, 4907",
+      "Sysmon: 16"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Alert on Defender state, policy and tamper-related changes.",
+    "CoverageLayer": "Microsoft Defender Telemetry",
+    "PrimaryDataSources": "Defender Operational, Security and Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-015",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Defender :: Microsoft Defender Configuration and Tamper Events",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Defender: 5001, 5004, 5007, 5008, 5013",
+      "Security: 4719, 4907",
+      "Sysmon: 16"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Windows Defender/Operational",
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for microsoft defender configuration and tamper events activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1562.001 - Impair Defenses: Disable or Modify Tools",
+      "T1562.006 - Impair Defenses: Indicator Blocking",
+      "T1070 - Indicator Removal"
+    ],
+    "MicrosoftBestPractice": "Microsoft Defender guidance: Defender Antivirus and Defender for Endpoint telemetry uses separate operational event IDs and health/configuration events. Validate collection and freshness independently of auditpol. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-microsoft-defender-antivirus"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft Defender Antivirus / Microsoft Defender XDR",
+    "MicrosoftFrameworkControl": "Microsoft Defender Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Defender documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Defender",
+    "Subcategory": "Attack Surface Reduction and Controlled Folder Access",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for attack surface reduction and controlled folder access activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "ASR block visibility",
+      "Ransomware protection",
+      "Policy tuning"
+    ],
+    "ExpectedEventIDs": [
+      "Defender: 1121, 1122, 1123, 1124",
+      "Security: 4688",
+      "Sysmon: 1, 11"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect ASR and Controlled Folder Access block and audit events and include policy tuning notes.",
+    "CoverageLayer": "Microsoft Defender Telemetry",
+    "PrimaryDataSources": "Defender Operational and endpoint process telemetry",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-016",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Defender :: Attack Surface Reduction and Controlled Folder Access",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Defender: 1121, 1122, 1123, 1124",
+      "Security: 4688",
+      "Sysmon: 1, 11"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Windows Defender/Operational",
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for attack surface reduction and controlled folder access activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1562.001 - Impair Defenses: Disable or Modify Tools",
+      "T1105 - Ingress Tool Transfer",
+      "T1486 - Data Encrypted for Impact"
+    ],
+    "MicrosoftBestPractice": "Microsoft Defender guidance: Defender Antivirus and Defender for Endpoint telemetry uses separate operational event IDs and health/configuration events. Validate collection and freshness independently of auditpol. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-microsoft-defender-antivirus"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft Defender Antivirus / Microsoft Defender XDR",
+    "MicrosoftFrameworkControl": "Microsoft Defender Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Defender documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Application Control",
+    "Subcategory": "AppLocker Enforcement and Audit Events",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for applocker enforcement and audit events activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Unauthorised execution",
+      "Application control audit",
+      "Bypass investigation"
+    ],
+    "ExpectedEventIDs": [
+      "AppLocker: 8002, 8003, 8004, 8006, 8007",
+      "Security: 4688",
+      "Sysmon: 1"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect AppLocker allowed, audited and blocked execution events for EXE, DLL, script and MSI rules.",
+    "CoverageLayer": "Application Control Telemetry",
+    "PrimaryDataSources": "Microsoft-Windows-AppLocker event logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-017",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Application Control :: AppLocker Enforcement and Audit Events",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "AppLocker: 8002, 8003, 8004, 8006, 8007",
+      "Security: 4688",
+      "Sysmon: 1"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-AppLocker/*",
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for applocker enforcement and audit events activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1218 - System Binary Proxy Execution",
+      "T1204 - User Execution",
+      "T1036 - Masquerading",
+      "T1562.001 - Impair Defenses: Disable or Modify Tools"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft AppLocker",
+    "MicrosoftFrameworkControl": "Application Control Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Application Control",
+    "Subcategory": "WDAC and Code Integrity Events",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for wdac and code integrity events activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "WDAC block visibility",
+      "Unsigned code investigation",
+      "Policy enforcement assurance"
+    ],
+    "ExpectedEventIDs": [
+      "CodeIntegrity: 3076, 3077, 3089",
+      "Security: 5038",
+      "Sysmon: 7"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect WDAC audit/block and code integrity events from protected endpoints and servers.",
+    "CoverageLayer": "Application Control Telemetry",
+    "PrimaryDataSources": "Microsoft-Windows-CodeIntegrity/Operational",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-018",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Application Control :: WDAC and Code Integrity Events",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "CodeIntegrity: 3076, 3077, 3089",
+      "Security: 5038",
+      "Sysmon: 7"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-CodeIntegrity/Operational",
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for wdac and code integrity events activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1218 - System Binary Proxy Execution",
+      "T1036 - Masquerading",
+      "T1027 - Obfuscated Files or Information",
+      "T1562.001 - Impair Defenses: Disable or Modify Tools"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft WDAC / Code Integrity",
+    "MicrosoftFrameworkControl": "Application Control Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Remote Access",
+    "Subcategory": "RDP Authentication and Session Lifecycle",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for rdp authentication and session lifecycle activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "RDP brute force",
+      "Interactive remote access",
+      "Session hijack investigation"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4624, 4625, 4634, 4647, 4778, 4779",
+      "TerminalServices: 21, 22, 23, 24, 25, 1149"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect Security and TerminalServices session events and correlate LogonType 10 and 7/10 transitions.",
+    "CoverageLayer": "Remote Access Telemetry",
+    "PrimaryDataSources": "Security and TerminalServices logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-019",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Remote Access :: RDP Authentication and Session Lifecycle",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4624, 4625, 4634, 4647, 4778, 4779",
+      "TerminalServices: 21, 22, 23, 24, 25, 1149"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "TerminalServices LocalSessionManager/Operational and RemoteConnectionManager/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for rdp authentication and session lifecycle activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1021.001 - Remote Services: Remote Desktop Protocol",
+      "T1078 - Valid Accounts",
+      "T1110 - Brute Force"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Terminal Services / RDP logging",
+    "MicrosoftFrameworkControl": "Remote Access Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Remote Access",
+    "Subcategory": "Remote Service Creation and PsExec-like Activity",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for remote service creation and psexec-like activity activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "PsExec detection",
+      "Remote service install",
+      "Lateral movement triage"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4624, 4648, 4672, 4688, 4697, 5140, 5145",
+      "System: 7045",
+      "Sysmon: 1, 3, 11"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect remote logon, service creation, admin share and process telemetry needed to prove remote execution.",
+    "CoverageLayer": "Remote Access Telemetry",
+    "PrimaryDataSources": "Security, System and Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-020",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Remote Access :: Remote Service Creation and PsExec-like Activity",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4624, 4648, 4672, 4688, 4697, 5140, 5145",
+      "System: 7045",
+      "Sysmon: 1, 3, 11"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Windows System",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for remote service creation and psexec-like activity activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1569.002 - System Services: Service Execution",
+      "T1021.002 - Remote Services: SMB / Windows Admin Shares",
+      "T1570 - Lateral Tool Transfer",
+      "T1047 - Windows Management Instrumentation"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Remote Access Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Remote Access",
+    "Subcategory": "WMI Remote Execution and Abuse",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for wmi remote execution and abuse activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Remote WMI execution",
+      "WMI persistence",
+      "Lateral movement investigation"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4624, 4688, 4648",
+      "WMI-Activity: 5857, 5858, 5859, 5860, 5861",
+      "Sysmon: 1, 3, 19, 20, 21"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect WMI-Activity logs and Sysmon WMI events, then correlate with remote logon and process creation.",
+    "CoverageLayer": "Remote Access Telemetry",
+    "PrimaryDataSources": "Security, WMI-Activity and Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-021",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Remote Access :: WMI Remote Execution and Abuse",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4624, 4688, 4648",
+      "WMI-Activity: 5857, 5858, 5859, 5860, 5861",
+      "Sysmon: 1, 3, 19, 20, 21"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Microsoft-Windows-WMI-Activity/Operational",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for wmi remote execution and abuse activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1047 - Windows Management Instrumentation",
+      "T1021 - Remote Services",
+      "T1059.001 - PowerShell"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft WMI-Activity logging",
+    "MicrosoftFrameworkControl": "Remote Access Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - File and Share Access",
+    "Subcategory": "SMB Share Access and Sensitive File Reads",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Reduces visibility gaps for smb share access and sensitive file reads activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Sensitive share access",
+      "Data staging",
+      "Ransomware file activity"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 5140, 5142, 5143, 5144, 5145, 4663",
+      "Sysmon: 11, 15, 23"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect share and detailed share events for sensitive shares and pair them with object SACLs where justified.",
+    "CoverageLayer": "File and Share Access Telemetry",
+    "PrimaryDataSources": "Security Object Access and Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-022",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - File and Share Access :: SMB Share Access and Sensitive File Reads",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 5140, 5142, 5143, 5144, 5145, 4663",
+      "Sysmon: 11, 15, 23"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for smb share access and sensitive file reads activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1039 - Data from Network Shared Drive",
+      "T1005 - Data from Local System",
+      "T1074 - Data Staged"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "File and Share Access Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - File and Share Access",
+    "Subcategory": "Removable Media and External Device Activity",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Medium",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for removable media and external device activity activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "USB data movement",
+      "External device use",
+      "Insider risk"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4663, 6416, 6419, 6420, 6421, 6422, 6423, 6424",
+      "Sysmon: 9, 11, 15"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect removable storage access and plug-and-play events where the asset role and policy require it.",
+    "CoverageLayer": "File and Share Access Telemetry",
+    "PrimaryDataSources": "Security Plug and Play, Object Access and Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-023",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - File and Share Access :: Removable Media and External Device Activity",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4663, 6416, 6419, 6420, 6421, 6422, 6423, 6424",
+      "Sysmon: 9, 11, 15"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for removable media and external device activity activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1091 - Replication Through Removable Media",
+      "T1200 - Hardware Additions",
+      "T1005 - Data from Local System"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "File and Share Access Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Identity",
+    "Subcategory": "Privileged Group Membership Changes",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "Low",
+    "SecurityImpact": "Reduces visibility gaps for privileged group membership changes activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Privileged access change",
+      "Admin self-elevation",
+      "Identity governance evidence"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4727, 4728, 4729, 4732, 4733, 4756, 4757, 4764",
+      "DirectoryServices: 5136, 5137, 5141"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Monitor privileged group membership additions and removals with actor, target and originating host context.",
+    "CoverageLayer": "Identity and Authentication Telemetry",
+    "PrimaryDataSources": "Security and Directory Services",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-024",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Identity :: Privileged Group Membership Changes",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4727, 4728, 4729, 4732, 4733, 4756, 4757, 4764",
+      "DirectoryServices: 5136, 5137, 5141"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Directory Service"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for privileged group membership changes activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1098 - Account Manipulation",
+      "T1078 - Valid Accounts",
+      "T1548 - Abuse Elevation Control Mechanism"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Active Directory auditing",
+    "MicrosoftFrameworkControl": "Identity and Authentication Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Identity",
+    "Subcategory": "Account Creation, Enablement and Password Reset",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "Low",
+    "SecurityImpact": "Reduces visibility gaps for account creation, enablement and password reset activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Suspicious account lifecycle changes",
+      "Account takeover support",
+      "Joiner mover leaver assurance"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4720, 4722, 4723, 4724, 4725, 4726, 4738, 4740, 4767, 4781, 4794, 5376, 5377"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect and alert on high-risk account lifecycle activity, especially privileged or service accounts.",
+    "CoverageLayer": "Identity and Authentication Telemetry",
+    "PrimaryDataSources": "Security",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-025",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Identity :: Account Creation, Enablement and Password Reset",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4720, 4722, 4723, 4724, 4725, 4726, 4738, 4740, 4767, 4781, 4794, 5376, 5377"
+    ],
+    "EventChannels": [
+      "Windows Security"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for account creation, enablement and password reset activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1136 - Create Account",
+      "T1098 - Account Manipulation",
+      "T1078 - Valid Accounts",
+      "T1110 - Brute Force"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Windows security monitoring",
+    "MicrosoftFrameworkControl": "Identity and Authentication Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Identity",
+    "Subcategory": "Kerberos Authentication and Ticket Abuse",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Reduces visibility gaps for kerberos authentication and ticket abuse activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Kerberoasting",
+      "AS-REP roasting",
+      "Kerberos failure analysis"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4768, 4769, 4770, 4771, 4772, 4773",
+      "Sysmon: 1, 10"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect Kerberos authentication and service ticket events from all domain controllers.",
+    "CoverageLayer": "Identity and Authentication Telemetry",
+    "PrimaryDataSources": "Domain Controller Security logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-026",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Identity :: Kerberos Authentication and Ticket Abuse",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4768, 4769, 4770, 4771, 4772, 4773",
+      "Sysmon: 1, 10"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for kerberos authentication and ticket abuse activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1558 - Steal or Forge Kerberos Tickets",
+      "T1558.003 - Kerberoasting",
+      "T1558.004 - AS-REP Roasting",
+      "T1550.003 - Pass the Ticket"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source. Microsoft best practice for domain controllers: ensure the correct advanced audit policy settings are enabled so authentication, Kerberos, directory-service changes, AD CS and identity-related events are generated and available to defensive tooling.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit",
+      "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Identity and Authentication Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP; Microsoft Defender documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Identity",
+    "Subcategory": "NTLM Credential Validation and Legacy Authentication",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for ntlm credential validation and legacy authentication activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "NTLM usage reduction",
+      "Password spray detection",
+      "Legacy authentication monitoring"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4776, 4777",
+      "NTLM Operational: 8001, 8002, 8003, 8004"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect credential-validation events and enable NTLM operational logging where NTLM reduction is an objective.",
+    "CoverageLayer": "Identity and Authentication Telemetry",
+    "PrimaryDataSources": "Domain Controller Security and NTLM Operational logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-027",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Identity :: NTLM Credential Validation and Legacy Authentication",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4776, 4777",
+      "NTLM Operational: 8001, 8002, 8003, 8004"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "NTLM Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for ntlm credential validation and legacy authentication activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1110 - Brute Force",
+      "T1550.002 - Pass the Hash",
+      "T1078 - Valid Accounts"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source. Microsoft best practice for domain controllers: ensure the correct advanced audit policy settings are enabled so authentication, Kerberos, directory-service changes, AD CS and identity-related events are generated and available to defensive tooling.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit",
+      "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection"
+    ],
+    "MicrosoftFramework": "Microsoft Windows security monitoring",
+    "MicrosoftFrameworkControl": "Identity and Authentication Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP; Microsoft Defender documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Directory Services",
+    "Subcategory": "Active Directory Object Change Coverage",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for active directory object change coverage activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "GPO change",
+      "Directory object tamper",
+      "LDAP query investigation"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 5136, 5137, 5138, 5139, 5141",
+      "DirectoryServices: 1644"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect AD object change events and use Directory Services diagnostic logging for targeted LDAP query visibility where required.",
+    "CoverageLayer": "Active Directory Telemetry",
+    "PrimaryDataSources": "Domain Controller Security and Directory Services logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-028",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Directory Services :: Active Directory Object Change Coverage",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 5136, 5137, 5138, 5139, 5141",
+      "DirectoryServices: 1644"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Directory Service"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for active directory object change coverage activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1484.001 - Domain Policy Modification: Group Policy Modification",
+      "T1098 - Account Manipulation",
+      "T1087.002 - Account Discovery: Domain Account",
+      "T1069.002 - Permission Groups Discovery: Domain Groups"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source. Microsoft best practice for domain controllers: ensure the correct advanced audit policy settings are enabled so authentication, Kerberos, directory-service changes, AD CS and identity-related events are generated and available to defensive tooling.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit",
+      "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection"
+    ],
+    "MicrosoftFramework": "Microsoft Active Directory auditing",
+    "MicrosoftFrameworkControl": "Active Directory Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP; Microsoft Defender documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Directory Services",
+    "Subcategory": "DCSync and Replication Abuse Coverage",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Reduces visibility gaps for dcsync and replication abuse coverage activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "DCSync detection",
+      "Replication rights abuse",
+      "Domain compromise investigation"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4662, 4928, 4929, 4930, 4931, 4932, 4933, 4934, 4935, 4936, 4937",
+      "Sysmon: 1, 10"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect directory replication and object access events on domain controllers with correct SACLs for replication permissions.",
+    "CoverageLayer": "Active Directory Telemetry",
+    "PrimaryDataSources": "Domain Controller Security logs and endpoint telemetry",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-029",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Directory Services :: DCSync and Replication Abuse Coverage",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4662, 4928, 4929, 4930, 4931, 4932, 4933, 4934, 4935, 4936, 4937",
+      "Sysmon: 1, 10"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for dcsync and replication abuse coverage activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1003.006 - OS Credential Dumping: DCSync",
+      "T1098 - Account Manipulation",
+      "T1482 - Domain Trust Discovery"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source. Microsoft best practice for domain controllers: ensure the correct advanced audit policy settings are enabled so authentication, Kerberos, directory-service changes, AD CS and identity-related events are generated and available to defensive tooling.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit",
+      "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft Active Directory auditing",
+    "MicrosoftFrameworkControl": "Active Directory Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP; Microsoft Defender documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Certificate Services",
+    "Subcategory": "AD CS Request, Issue and Configuration Events",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for ad cs request, issue and configuration events activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "AD CS abuse",
+      "Certificate template change",
+      "Suspicious certificate request"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4868, 4869, 4870, 4871, 4872, 4873, 4886, 4887, 4888, 4889, 4890, 4898, 4899",
+      "System: 7036"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect certificate-services security events from issuing CAs and monitor template and CA configuration changes.",
+    "CoverageLayer": "Certificate Services Telemetry",
+    "PrimaryDataSources": "Certification Services and Security logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-030",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Certificate Services :: AD CS Request, Issue and Configuration Events",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4868, 4869, 4870, 4871, 4872, 4873, 4886, 4887, 4888, 4889, 4890, 4898, 4899",
+      "System: 7036"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Windows System"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for ad cs request, issue and configuration events activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1649 - Steal or Forge Authentication Certificates",
+      "T1552.004 - Unsecured Credentials: Private Keys",
+      "T1550.003 - Use Alternate Authentication Material: Pass the Ticket"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source. Microsoft best practice for domain controllers: ensure the correct advanced audit policy settings are enabled so authentication, Kerberos, directory-service changes, AD CS and identity-related events are generated and available to defensive tooling.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit",
+      "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection"
+    ],
+    "MicrosoftFramework": "Microsoft Active Directory auditing",
+    "MicrosoftFrameworkControl": "Certificate Services Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP; Microsoft Defender documentation"
+  },
+  {
+    "Category": "Advanced Coverage - Network",
+    "Subcategory": "Windows Firewall Rule and Profile Changes",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for windows firewall rule and profile changes activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Firewall rule tampering",
+      "Host exposure changes",
+      "Policy assurance"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4944, 4945, 4946, 4947, 4948, 4949, 4950, 4951, 4952, 4953, 4954, 4956, 4957, 4958",
+      "Firewall: 2004, 2005, 2006, 2009, 2033"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect Security MPSSVC events and Windows Firewall operational events for host firewall policy changes.",
+    "CoverageLayer": "Network and Firewall Telemetry",
+    "PrimaryDataSources": "Security and Windows Firewall logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-031",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Network :: Windows Firewall Rule and Profile Changes",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4944, 4945, 4946, 4947, 4948, 4949, 4950, 4951, 4952, 4953, 4954, 4956, 4957, 4958",
+      "Firewall: 2004, 2005, 2006, 2009, 2033"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Microsoft-Windows-Windows Firewall With Advanced Security/Firewall"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for windows firewall rule and profile changes activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1562.004 - Impair Defenses: Disable or Modify System Firewall",
+      "T1562.001 - Impair Defenses: Disable or Modify Tools",
+      "T1046 - Network Service Discovery"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Windows security monitoring",
+    "MicrosoftFrameworkControl": "Network and Firewall Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Network",
+    "Subcategory": "Windows Filtering Platform Connection Visibility",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Medium",
+    "TelemetryImpact": "High",
+    "SecurityImpact": "Reduces visibility gaps for windows filtering platform connection visibility activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Blocked connection analysis",
+      "Host network investigation",
+      "Policy troubleshooting"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 5150, 5151, 5152, 5153, 5154, 5155, 5156, 5157, 5158, 5159",
+      "Sysmon: 3"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect WFP success and failure events only where the volume is operationally sustainable.",
+    "CoverageLayer": "Network and Firewall Telemetry",
+    "PrimaryDataSources": "Security Filtering Platform and Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-032",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Network :: Windows Filtering Platform Connection Visibility",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 5150, 5151, 5152, 5153, 5154, 5155, 5156, 5157, 5158, 5159",
+      "Sysmon: 3"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for windows filtering platform connection visibility activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1049 - System Network Connections Discovery",
+      "T1105 - Ingress Tool Transfer",
+      "T1071 - Application Layer Protocol",
+      "T1021 - Remote Services"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Network and Firewall Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Network",
+    "Subcategory": "NPS, VPN and 802.1X Authentication Events",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for nps, vpn and 802.1x authentication events activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "VPN authentication",
+      "Wireless authentication",
+      "Conditional access investigation"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 6272, 6273, 6274, 6275, 6276, 6277, 6278, 6279, 6280, 6281",
+      "NPS: 6272, 6273, 6278, 6279"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect NPS success and failure events from all RADIUS/NPS servers.",
+    "CoverageLayer": "Network and Firewall Telemetry",
+    "PrimaryDataSources": "NPS and Security logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-033",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Network :: NPS, VPN and 802.1X Authentication Events",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Server",
+      "CriticalServer"
+    ],
+    "EventIDs": [
+      "Security: 6272, 6273, 6274, 6275, 6276, 6277, 6278, 6279, 6280, 6281",
+      "NPS: 6272, 6273, 6278, 6279"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Network Policy and Access Services"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for nps, vpn and 802.1x authentication events activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1133 - External Remote Services",
+      "T1021 - Remote Services",
+      "T1078 - Valid Accounts",
+      "T1110 - Brute Force"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Windows security monitoring",
+    "MicrosoftFrameworkControl": "Network and Firewall Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Persistence",
+    "Subcategory": "Scheduled Task Registration and Execution",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for scheduled task registration and execution activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Scheduled task persistence",
+      "Task execution evidence",
+      "Configuration drift"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4698, 4699, 4700, 4701, 4702",
+      "TaskScheduler: 106, 140, 141, 200, 201",
+      "Sysmon: 1"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect scheduled task creation, modification, deletion and execution telemetry.",
+    "CoverageLayer": "Persistence Telemetry",
+    "PrimaryDataSources": "Security, Task Scheduler Operational and Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-034",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Persistence :: Scheduled Task Registration and Execution",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4698, 4699, 4700, 4701, 4702",
+      "TaskScheduler: 106, 140, 141, 200, 201",
+      "Sysmon: 1"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Microsoft-Windows-TaskScheduler/Operational",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for scheduled task registration and execution activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1053.005 - Scheduled Task/Job: Scheduled Task",
+      "T1547 - Boot or Logon Autostart Execution",
+      "T1021.002 - Remote Services: SMB / Windows Admin Shares"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft Task Scheduler logging",
+    "MicrosoftFrameworkControl": "Persistence Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Persistence",
+    "Subcategory": "Service Install, Start Type and State Changes",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for service install, start type and state changes activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Service persistence",
+      "Driver/service abuse",
+      "Remote execution evidence"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4697",
+      "System: 7035, 7036, 7040, 7045",
+      "Sysmon: 1, 6"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect service install, state change and start type modification events.",
+    "CoverageLayer": "Persistence Telemetry",
+    "PrimaryDataSources": "Security, System and Sysmon",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-035",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Persistence :: Service Install, Start Type and State Changes",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4697",
+      "System: 7035, 7036, 7040, 7045",
+      "Sysmon: 1, 6"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Windows System",
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for service install, start type and state changes activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1543.003 - Create or Modify System Process: Windows Service",
+      "T1569.002 - System Services: Service Execution",
+      "T1574 - Hijack Execution Flow"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon",
+    "MicrosoftFrameworkControl": "Persistence Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Credential Access",
+    "Subcategory": "LSASS Access and Credential Dumping Signals",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for lsass access and credential dumping signals activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "LSASS access detection",
+      "Credential dumping",
+      "Privilege misuse"
+    ],
+    "ExpectedEventIDs": [
+      "Sysmon: 10, 1, 7",
+      "Security: 4656, 4663, 4673, 4674, 4688",
+      "Defender: 1116, 1117"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect process access events for LSASS and correlate with process creation, privilege use and Defender detections.",
+    "CoverageLayer": "Credential Access Telemetry",
+    "PrimaryDataSources": "Sysmon, Security and Defender",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-036",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Credential Access :: LSASS Access and Credential Dumping Signals",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Sysmon: 10, 1, 7",
+      "Security: 4656, 4663, 4673, 4674, 4688",
+      "Defender: 1116, 1117"
+    ],
+    "EventChannels": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Windows Security",
+      "Microsoft-Windows-Windows Defender/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for lsass access and credential dumping signals activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1003.001 - OS Credential Dumping: LSASS Memory",
+      "T1055 - Process Injection",
+      "T1134 - Access Token Manipulation"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft Defender Antivirus / Microsoft Defender XDR",
+    "MicrosoftFrameworkControl": "Credential Access Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Credential Access",
+    "Subcategory": "SAM, SECURITY and NTDS File Access Signals",
+    "Context": "Required",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "Critical",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for sam, security and ntds file access signals activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Credential store access",
+      "NTDS dump investigation",
+      "Offline credential theft"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4656, 4663, 4661, 4662",
+      "Sysmon: 1, 10, 11, 15",
+      "PowerShell: 4104"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect sensitive file, registry and process telemetry around credential stores and domain controller backup paths.",
+    "CoverageLayer": "Credential Access Telemetry",
+    "PrimaryDataSources": "Security Object Access, Sysmon and PowerShell",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-037",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Credential Access :: SAM, SECURITY and NTDS File Access Signals",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "Workstation",
+      "Server",
+      "CriticalServer",
+      "DC"
+    ],
+    "EventIDs": [
+      "Security: 4656, 4663, 4661, 4662",
+      "Sysmon: 1, 10, 11, 15",
+      "PowerShell: 4104"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "Microsoft-Windows-Sysmon/Operational",
+      "Microsoft-Windows-PowerShell/Operational"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for sam, security and ntds file access signals activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1003.002 - OS Credential Dumping: Security Account Manager",
+      "T1003.003 - OS Credential Dumping: NTDS",
+      "T1003.004 - OS Credential Dumping: LSA Secrets",
+      "T1003.005 - OS Credential Dumping: Cached Domain Credentials"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Sysinternals Sysmon; Microsoft PowerShell logging",
+    "MicrosoftFrameworkControl": "Credential Access Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Cloud and Hybrid Identity",
+    "Subcategory": "AD FS and Federation Authentication Events",
+    "Context": "Conditional",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for ad fs and federation authentication events activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Federation authentication investigation",
+      "AD FS token abuse",
+      "Hybrid identity monitoring"
+    ],
+    "ExpectedEventIDs": [
+      "Security: 4624, 4625, 4648, 4768, 4769",
+      "AD FS Admin: 100, 307, 411, 412, 500"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Collect AD FS Admin events where AD FS is present and correlate with DC authentication events.",
+    "CoverageLayer": "Identity and Authentication Telemetry",
+    "PrimaryDataSources": "Security and AD FS Admin logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-038",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Cloud and Hybrid Identity :: AD FS and Federation Authentication Events",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "CriticalServer"
+    ],
+    "EventIDs": [
+      "Security: 4624, 4625, 4648, 4768, 4769",
+      "AD FS Admin: 100, 307, 411, 412, 500"
+    ],
+    "EventChannels": [
+      "Windows Security",
+      "AD FS Admin"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for ad fs and federation authentication events activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1556 - Modify Authentication Process",
+      "T1606.002 - Forge Web Credentials: SAML Tokens",
+      "T1078 - Valid Accounts",
+      "T1550 - Use Alternate Authentication Material"
+    ],
+    "MicrosoftBestPractice": "Microsoft best practice: use Advanced Audit Policy Configuration to define granular subcategory auditing rather than relying on broad legacy audit categories. Use Microsoft baseline and advanced recommendations as the starting point for workstation and server coverage, then apply role-aware tightening for DCs, critical servers and sensitive workloads. Validate with auditpol /get /category:* and check that GPO or MDM policy is the authoritative source.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/audit-policy-recommendations",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/advanced-audit-policy-configuration",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/planning-and-deploying-advanced-security-audit-policies",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/advanced-security-audit-policy-settings",
+      "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit"
+    ],
+    "MicrosoftFramework": "Microsoft Windows security monitoring",
+    "MicrosoftFrameworkControl": "Identity and Authentication Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft audit policy recommendations; Microsoft advanced audit policy settings; Microsoft Audit Policy CSP"
+  },
+  {
+    "Category": "Advanced Coverage - Workload Overlay",
+    "Subcategory": "Exchange Administrator and Mailbox Audit Coverage",
+    "Context": "Conditional",
+    "MappingStrength": "StronglyAligned",
+    "RecommendedWorkstation": "Collect and validate",
+    "RecommendedServer": "Collect and validate",
+    "RecommendedDC": "Collect and validate",
+    "Priority": "High",
+    "TelemetryImpact": "Medium",
+    "SecurityImpact": "Reduces visibility gaps for exchange administrator and mailbox audit coverage activity and weakens investigation quality if missing.",
+    "DetectionUseCases": [
+      "Exchange admin action review",
+      "Mailbox access investigation",
+      "Critical workload assurance"
+    ],
+    "ExpectedEventIDs": [
+      "Exchange Admin Audit: cmdlet audit records",
+      "Exchange Mailbox Audit: mailbox audit records",
+      "Security: 4624, 4688, 4728, 4732"
+    ],
+    "ImplementationPath": "Configure the relevant Windows logging policy, product policy or agent configuration. Confirm collection at the endpoint and in the SIEM.",
+    "EngineerRemediation": "Enable or tune the relevant source, confirm event-channel collection, verify field extraction and document any exclusions.",
+    "AnalystValue": "Gives analysts supporting evidence for triage, correlation and incident reconstruction.",
+    "AuditorRationale": "Provides evidence that the control is supported by collected, queryable security telemetry.",
+    "NIST_SP_800_53": [
+      "AU-2",
+      "AU-12",
+      "SI-4"
+    ],
+    "NIST_CSF_2_0": [
+      "DE.CM-01",
+      "DE.CM-03",
+      "DE.AE-03"
+    ],
+    "CIS": [
+      "CIS Control 8",
+      "CIS Control 13"
+    ],
+    "MicrosoftBaselineNote": "Advanced coverage item. This sits above auditpol and must be validated as a data-source, channel or product telemetry requirement.",
+    "Recommendation": "Enable and collect Exchange administrator and mailbox audit logging for Exchange workloads.",
+    "CoverageLayer": "Workload Overlay Telemetry",
+    "PrimaryDataSources": "Exchange audit logs and Windows Security logs",
+    "ValidationMethod": "Validate channel collection, event generation and SIEM parsing; auditpol alone is not sufficient.",
+    "CollectionPrerequisites": "Configure the source channel or product policy, forward the event log to the SIEM and validate with controlled test activity.",
+    "ControlID": "AC-039",
+    "Package": "Advanced Audit Coverage",
+    "Control": "Advanced Coverage - Workload Overlay :: Exchange Administrator and Mailbox Audit Coverage",
+    "ControlType": "TelemetryCollection",
+    "AuditpolComparable": false,
+    "EvidenceRequired": true,
+    "ApplicableProfiles": [
+      "CriticalServer"
+    ],
+    "EventIDs": [
+      "Exchange Admin Audit: cmdlet audit records",
+      "Exchange Mailbox Audit: mailbox audit records",
+      "Security: 4624, 4688, 4728, 4732"
+    ],
+    "EventChannels": [
+      "Exchange admin audit",
+      "Exchange mailbox audit",
+      "Windows Security"
+    ],
+    "BlindSpotIfMissing": "Blind spot: Reduces visibility gaps for exchange administrator and mailbox audit coverage activity and weakens investigation quality if missing.",
+    "MITRE_ATTCK": [
+      "T1098 - Account Manipulation",
+      "T1114 - Email Collection",
+      "T1078 - Valid Accounts"
+    ],
+    "MicrosoftBestPractice": "Microsoft Exchange guidance: Exchange administrator audit logging and mailbox audit logging are workload-specific audit layers and must be assessed alongside Windows Security auditing on the host. Microsoft best practice: prove both event generation and event collection. A setting is not sufficient unless the expected channel is enabled, recent events exist and the SIEM or collector receives them.",
+    "OfficialMicrosoftReferences": [
+      "https://learn.microsoft.com/en-us/exchange/policy-and-compliance/admin-audit-logging/admin-audit-logging",
+      "https://learn.microsoft.com/en-us/exchange/policy-and-compliance/mailbox-audit-logging/mailbox-audit-logging"
+    ],
+    "MicrosoftFramework": "Microsoft Exchange audit logging",
+    "MicrosoftFrameworkControl": "Workload Overlay Telemetry > TelemetryCollection. Validate the named Microsoft channel/provider and the listed EventIDs.",
+    "MicrosoftRecommendedSetting": "Source-specific Microsoft telemetry must be enabled, collected and evidenced; this is not an auditpol subcategory.",
+    "MicrosoftEvidenceExpectation": "Source-specific evidence from the named Microsoft channel/provider, collection pipeline and recent event proof.",
+    "MicrosoftReferenceSet": "Microsoft Exchange audit logging documentation"
+  }
+]

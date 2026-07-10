@@ -1,0 +1,81 @@
+Asset: DC01
+System audit policy
+Category/Subcategory                      Setting
+System
+  Security System Extension               Success and Failure
+  System Integrity                        Success and Failure
+  IPsec Driver                            Success and Failure
+  Other System Events                     Success and Failure
+  Security State Change                   Success
+Logon/Logoff
+  Logon                                   Success and Failure
+  Logoff                                  Success
+  Account Lockout                         Success and Failure
+  Special Logon                           Success
+  Other Logon/Logoff Events               Success and Failure
+  Group Membership                        Success
+Object Access
+  SAM                                     Success
+  File Share                              No Auditing
+  Removable Storage                       No Auditing
+Privilege Use
+  Sensitive Privilege Use                 Success and Failure
+Detailed Tracking
+  Process Creation                        No Auditing
+  Plug and Play Events                    No Auditing
+Policy Change
+  Audit Policy Change                     Success and Failure
+  Authentication Policy Change            Success
+  Authorization Policy Change             Success
+Account Management
+  Computer Account Management             Success and Failure
+  Security Group Management               Success and Failure
+  User Account Management                 Success and Failure
+DS Access
+  Directory Service Access                Success
+  Directory Service Changes               Success and Failure
+Account Logon
+  Kerberos Service Ticket Operations      Success and Failure
+  Kerberos Authentication Service         Success and Failure
+  Credential Validation                   Success and Failure
+============================================================
+Asset: DC02
+System audit policy
+Category/Subcategory                      Setting
+System
+  Security System Extension               No Auditing
+  System Integrity                        No Auditing
+  IPsec Driver                            No Auditing
+  Other System Events                     Success and Failure
+  Security State Change                   No Auditing
+Logon/Logoff
+  Logon                                   Success and Failure
+  Logoff                                  Success
+  Account Lockout                         Success and Failure
+  Special Logon                           Success
+  Other Logon/Logoff Events               No Auditing
+  Group Membership                        No Auditing
+Object Access
+  SAM                                     Success
+  File Share                              No Auditing
+  Removable Storage                       No Auditing
+Privilege Use
+  Sensitive Privilege Use                 Success and Failure
+Detailed Tracking
+  Process Creation                        Success
+  Plug and Play Events                    No Auditing
+Policy Change
+  Audit Policy Change                     No Auditing
+  Authentication Policy Change            Success
+  Authorization Policy Change             No Auditing
+Account Management
+  Computer Account Management             Success
+  Security Group Management               Success
+  User Account Management                 No Auditing
+DS Access
+  Directory Service Access                Success
+  Directory Service Changes               No Auditing
+Account Logon
+  Kerberos Service Ticket Operations      Success and Failure
+  Kerberos Authentication Service         Success and Failure
+  Credential Validation                   Success and Failure
