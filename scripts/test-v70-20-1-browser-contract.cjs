@@ -1,0 +1,10 @@
+const fs = require('fs');
+const fail = message => { console.error(`TAS v70.20.1 browser-contract gate failed: ${message}`); process.exit(1); };
+for (const file of ['dist/index.html','dist/studio/index.html','dist/member/index.html','dist/member/license-guide.html','dist/tas-member-extension.js']) if (!fs.existsSync(file)) fail(`missing ${file}`);
+const root = fs.readFileSync('dist/index.html','utf8');
+if (!root.includes('tas-member-extension.js')) fail('built AURORA root missing member extension');
+const member = fs.readFileSync('dist/member/index.html','utf8');
+if (!member.includes('AURORA member and edition foundation') || !member.includes('Open Professional Studio')) fail('member hub identity mismatch');
+const assets = fs.readdirSync('dist/assets');
+if (!assets.some(x => x.endsWith('.css')) || !assets.some(x => x.endsWith('.js'))) fail('AURORA production assets missing');
+console.log('TAS v70.20.1 browser-contract gate passed: AURORA root, /studio, /member, licensing route and production assets present.');

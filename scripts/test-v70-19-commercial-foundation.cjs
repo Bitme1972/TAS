@@ -5,8 +5,8 @@ const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 const manifest = JSON.parse(fs.readFileSync('FOUNDATION_BASELINE_MANIFEST.json', 'utf8'));
 const sha256 = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 
-if (!['tas-v70-20-community','tas-v70-21-public-experience'].includes(pkg.name)) fail(`unexpected package name ${pkg.name}`);
-if (!['70.20.0','70.21.0'].includes(pkg.version)) fail(`unexpected package version ${pkg.version}`);
+if (pkg.name !== 'tas-v70-20-1-aurora-member-foundation') fail(`unexpected package name ${pkg.name}`);
+if (pkg.version !== '70.20.1') fail(`unexpected package version ${pkg.version}`);
 for (const script of ['build:community', 'build:professional', 'build:consultant', 'build:editions', 'test:entitlements', 'test:edition-builds', 'test:commercial-foundation']) {
   if (!pkg.scripts?.[script]) fail(`missing inherited Sprint 1 package script ${script}`);
 }

@@ -1,3 +1,0 @@
-TAS v70.21 PUBLIC EXPERIENCE
-Public AuditPol.com experience with isolated browser-local TAS Community Studio.
-No payment integration. No deployment performed during sprint development.

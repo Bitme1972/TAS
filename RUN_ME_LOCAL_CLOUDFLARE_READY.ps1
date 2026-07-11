@@ -17,7 +17,7 @@ function Fail($Message) {
 $PackageFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 Write-Host "============================================================"
-Write-Host "TAS v70.20 COMMUNITY - PROFESSIONAL LOCAL PREVIEW"
+Write-Host "TAS v70.20.1 AURORA MEMBER FOUNDATION - LOCAL PREVIEW"
 Write-Host "============================================================"
 Write-Host "Package folder: $PackageFolder"
 Write-Host "Local port:     $Port"
@@ -56,7 +56,7 @@ npm.cmd run build
 if ($LASTEXITCODE -ne 0) { Fail "Build or validation gate failed." }
 
 Write-Host "[3/5] Checking Cloudflare build output..."
-foreach ($requiredDist in @("dist", "dist\index.html", "dist\studio\index.html", "dist\DEPLOYMENT_MARKER_TAS_V70_3_GOLDEN_COMPARE.txt", "dist\DEPLOYMENT_MARKER_TAS_V70_20_COMMUNITY.txt", "dist\TAS_DEPLOYED_EDITION.json", "dist-editions\community\TAS_EDITION_MANIFEST.json", "dist-editions\professional\TAS_EDITION_MANIFEST.json", "dist-editions\consultant\TAS_EDITION_MANIFEST.json")) {
+foreach ($requiredDist in @("dist", "dist\index.html", "dist\studio\index.html", "dist\DEPLOYMENT_MARKER_TAS_V70_3_GOLDEN_COMPARE.txt", "dist\DEPLOYMENT_MARKER_TAS_V70_20_COMMUNITY.txt", "dist\DEPLOYMENT_MARKER_TAS_V70_20_1_AURORA_MEMBER_FOUNDATION.txt", "dist\member\index.html", "dist\member\license-guide.html", "dist\member-resources\TAS_LICENSING_AND_DOWNLOADS_README.md", "dist\TAS_DEPLOYED_EDITION.json", "dist-editions\community\TAS_EDITION_MANIFEST.json", "dist-editions\professional\TAS_EDITION_MANIFEST.json", "dist-editions\consultant\TAS_EDITION_MANIFEST.json")) {
   if (!(Test-Path $requiredDist)) {
     Fail "Missing expected Cloudflare dist output: $requiredDist"
   }
@@ -65,7 +65,7 @@ foreach ($requiredDist in @("dist", "dist\index.html", "dist\studio\index.html",
 Write-Host "[4/5] Writing local validation marker..."
 $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 @"
-TAS v70.20 Community Professional local preview validation passed.
+TAS v70.20.1 AURORA Member Foundation local preview validation passed.
 Time: $stamp
 Mode: Local only
 Git: no commit, no push
@@ -75,10 +75,11 @@ Cloudflare: no deploy
 Write-Host "[5/5] Starting local preview from built dist..."
 Write-Host ""
 Write-Host "Open in Chrome:"
-Write-Host "  http://localhost:$Port/studio?localCloudflareReady=1"
+Write-Host "  http://localhost:$Port/?localAuroraReady=1"
+Write-Host "  http://localhost:$Port/member/"
 Write-Host ""
 Write-Host "Extra check:"
-Write-Host "  http://localhost:$Port/DEPLOYMENT_MARKER_TAS_V70_20_COMMUNITY.txt"
+Write-Host "  http://localhost:$Port/DEPLOYMENT_MARKER_TAS_V70_20_1_AURORA_MEMBER_FOUNDATION.txt"
 Write-Host ""
 Write-Host "Press CTRL+C in this window to stop the local server."
 Write-Host ""

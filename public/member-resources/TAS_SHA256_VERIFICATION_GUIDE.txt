@@ -1,0 +1,9 @@
+TAS RELEASE SHA-256 VERIFICATION - WINDOWS
+
+CMD:
+  certutil -hashfile TAS_RELEASE_FILENAME.zip SHA256
+
+PowerShell:
+  Get-FileHash .\TAS_RELEASE_FILENAME.zip -Algorithm SHA256
+
+Compare the complete 64-character result with the SHA-256 value supplied in the member download vault. Do not install or extract the package if the values differ.

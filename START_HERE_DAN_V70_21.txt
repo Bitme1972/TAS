@@ -1,7 +1,0 @@
-TAS v70.21 PUBLIC EXPERIENCE
-
-1. Extract the package.
-2. Run RUN_ME_LOCAL_CLEAN_INSTALL.cmd.
-3. Run npm run dev for the public site.
-4. Open /studio to test TAS Community.
-5. No Git or Cloudflare deployment is performed unless you explicitly run a deployment command.

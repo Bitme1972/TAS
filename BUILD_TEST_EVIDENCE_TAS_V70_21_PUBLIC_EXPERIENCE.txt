@@ -1,3 +1,0 @@
-TAS v70.21 validation completed successfully.
-Typecheck, public build, all independent edition builds, inherited regressions, Sprint 1, Sprint 2 and Sprint 3 gates passed.
-No deployment performed.

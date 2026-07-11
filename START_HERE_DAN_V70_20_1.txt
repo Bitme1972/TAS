@@ -1,0 +1,19 @@
+TAS v70.20.1 AURORA MEMBER FOUNDATION
+======================================
+
+THIS RELEASE IS BUILT FROM v70.20, NOT v70.21.
+
+1. Extract the ZIP to C:\TAS\TAS_v70_20_1_AURORA_MEMBER_FOUNDATION
+2. Double-click RUN_ME_LOCAL_CLOUDFLARE_READY.cmd
+3. Wait for all build and validation gates to pass.
+4. Open:
+     http://localhost:8787/
+   This is the protected AURORA command centre.
+5. Open the paid-member and edition hub at:
+     http://localhost:8787/member/
+
+No Git commit, Git push or Cloudflare deployment is performed by the local runner.
+
+IMPORTANT
+---------
+The member download vault is structurally ready, but signed commercial installers are deliberately not included or falsely presented as ready.

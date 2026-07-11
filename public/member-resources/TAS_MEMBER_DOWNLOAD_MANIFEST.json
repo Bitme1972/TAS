@@ -1,0 +1,16 @@
+{
+  "release": "70.20.1",
+  "status": "member-foundation",
+  "commercialBinariesPublished": false,
+  "downloadSlots": [
+    {"id":"professional-windows","edition":"professional","state":"entitlement-required","artifact":null},
+    {"id":"consultant-windows","edition":"consultant","state":"consultant-entitlement-required","artifact":null}
+  ],
+  "publicGuides": [
+    "TAS_LICENSING_AND_DOWNLOADS_README.md",
+    "TAS_CUSTOMER_QUICK_START.md",
+    "TAS_OFFLINE_ACTIVATION_WORKFLOW.md",
+    "TAS_SHA256_VERIFICATION_GUIDE.txt"
+  ],
+  "securityNote": "No signing key, payment secret, licence secret or customer audit evidence is present in this manifest."
+}

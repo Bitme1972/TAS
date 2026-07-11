@@ -1,8 +1,0 @@
-TAS v70.21 PUBLIC EXPERIENCE
-Edition: AuditPol.com public experience with isolated TAS Community Studio
-Version: 70.21.0
-Validation: PASS
-Deployment: NOT PERFORMED
-Protected AURORA files: 13 byte-identical files
-Community evidence handling: browser-local
-Commerce: intentionally not integrated

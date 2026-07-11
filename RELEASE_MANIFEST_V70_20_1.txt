@@ -1,0 +1,22 @@
+TAS v70.20.1 AURORA Member Foundation
+
+Package identity:
+- npm name: tas-v70-20-1-aurora-member-foundation
+- version: 70.20.1
+- source foundation: TAS v70.20 Community
+- protected product frontend: v70.18 AURORA command centre
+
+Added:
+- AURORA-aligned member and edition hub
+- paid-member download vault placement
+- licensing and offline activation guide
+- customer quick start
+- SHA-256 verification guide
+- contextual additions to existing Standalone Desktop and Product Activation areas
+
+Not included:
+- payment integration
+- production licence signing
+- private keys or secrets
+- signed commercial installer
+- automatic deployment

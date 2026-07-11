@@ -1,0 +1,5 @@
+TAS v70.20.1 AURORA Member Foundation
+Built directly from v70.20 Community and the protected v70.18 AURORA command centre.
+The AURORA root application remains the product frontend.
+Adds a visually aligned member and edition hub, paid-download vault placement, licensing guidance, quick start, offline activation and release-integrity resources.
+No payment service, production signing key or commercial installer is included.

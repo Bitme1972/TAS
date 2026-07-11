@@ -7,8 +7,8 @@ const config = JSON.parse(fs.readFileSync('config/edition-entitlements.json', 'u
 const foundation = JSON.parse(fs.readFileSync('FOUNDATION_BASELINE_MANIFEST.json', 'utf8'));
 const sha256 = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 
-if (!['tas-v70-20-community','tas-v70-21-public-experience'].includes(pkg.name) || !['70.20.0','70.21.0'].includes(pkg.version)) fail('package identity mismatch');
-if (config.release !== '70.20.0') fail('entitlement release mismatch');
+if (pkg.name !== 'tas-v70-20-1-aurora-member-foundation' || pkg.version !== '70.20.1') fail('package identity mismatch');
+if (config.release !== '70.20.1') fail('entitlement release mismatch');
 const community = config.editions.community;
 for (const capability of ['singleEvidenceIntake', 'basicAssurance', 'watermarkedHtmlReport', 'evidenceReceipt', 'limitedEventIntelligence', 'professionalUpgradePreview']) {
   if (!community.capabilities[capability]) fail(`Community capability ${capability} is not enabled`);

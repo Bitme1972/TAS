@@ -9,8 +9,8 @@ const pkg = readJson('package.json');
 const lock = readJson('package-lock.json');
 const manifest = readJson('FOUNDATION_BASELINE_MANIFEST.json');
 
-if (!['tas-v70-20-community','tas-v70-21-public-experience'].includes(pkg.name)) fail(`unexpected package name ${pkg.name}`);
-if (!['70.20.0','70.21.0'].includes(pkg.version)) fail(`unexpected package version ${pkg.version}`);
+if (pkg.name !== 'tas-v70-20-1-aurora-member-foundation') fail(`unexpected package name ${pkg.name}`);
+if (pkg.version !== '70.20.1') fail(`unexpected package version ${pkg.version}`);
 if (lock.name !== pkg.name || lock.version !== pkg.version) fail('package-lock root identity does not match package.json');
 if (lock.packages?.['']?.name !== pkg.name || lock.packages?.['']?.version !== pkg.version) fail('package-lock package identity does not match package.json');
 
@@ -28,9 +28,9 @@ for (const entry of manifest.protectedFiles || []) {
   if (sha256(entry.path) !== entry.sha256) fail(`protected v70.18 baseline changed: ${entry.path}`);
 }
 
-const expectedLines = fs.readFileSync('EXPECTED_AURORA_ASSET_HASHES.txt', 'utf8')
+const expectedLines = fs.readFileSync('EXPECTED_AURORA_V70_20_1_ASSET_HASHES.txt', 'utf8')
   .split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith('#'));
-for (const line of (pkg.version === '70.21.0' ? [] : expectedLines)) {
+for (const line of expectedLines) {
   const match = line.match(/^([a-f0-9]{64})\s+(.+)$/);
   if (!match) fail(`invalid expected asset hash line: ${line}`);
   const [, expected, file] = match;
@@ -51,4 +51,4 @@ if (/child_process|spawnSync|execFileSync|npm\.cmd/.test(validationWriter)) {
   fail('validation report writer must remain subprocess-free for Windows Node 24 portability');
 }
 
-console.log(`TAS inherited Foundation Lock gate passed: ${manifest.protectedFiles.length} protected files verified${pkg.version === '70.21.0' ? '; public output intentionally versioned separately' : ` and ${expectedLines.length} deterministic build outputs verified`}.`);
+console.log(`TAS v70.20 inherited Foundation Lock gate passed: ${manifest.protectedFiles.length} protected files and ${expectedLines.length} deterministic v70.20.1 build outputs verified.`);

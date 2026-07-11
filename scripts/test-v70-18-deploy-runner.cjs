@@ -37,5 +37,5 @@ if (stale.length) {
 if (!direct.includes('-DirectCloudflare')) throw new Error('Direct wrapper does not enable DirectCloudflare mode.');
 if (!gitOnly.includes('-GitOnly')) throw new Error('Git-only wrapper does not enable GitOnly mode.');
 if (!firstTime.includes('RUN_ME_DEPLOY_GIT_ONLY.ps1')) throw new Error('First-time setup is not connected to Git-only runner.');
-if (!cmd.includes('TAS v70.20 Community')) throw new Error('CMD entry point is not labelled for v70.20.');
+if (!cmd.includes('TAS v70.20.1 AURORA MEMBER FOUNDATION')) throw new Error('CMD entry point is not labelled for v70.20.1.');
 console.log('TAS v70.20 TAS-only Git, Cloudflare and independent-edition deployment runner gate passed.');
