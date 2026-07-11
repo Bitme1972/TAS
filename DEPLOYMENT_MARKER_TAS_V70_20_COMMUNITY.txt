@@ -1,0 +1,5 @@
+TAS v70.20 COMMUNITY
+Sprint 2 privacy-first Community Edition package.
+One evidence file. One asset. Selected assurance. Watermarked HTML report.
+Professional AURORA remains the protected default Cloudflare output.
+Validation and local preview do not deploy anything.

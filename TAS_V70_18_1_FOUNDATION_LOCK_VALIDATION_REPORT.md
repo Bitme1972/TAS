@@ -6,9 +6,9 @@
 
 - Package: `tas-v70-18-1-foundation-lock`
 - Version: `70.18.1`
-- Validated: `2026-07-11T12:27:31.696Z`
-- Node: `v24.18.0`
-- npm: `11.16.0`
+- Validated: `2026-07-11T12:17:27.687Z`
+- Node: `v22.16.0`
+- npm: `10.9.2`
 - Validation report portability: no child-process invocation is used
 - Original v70.18 AURORA archive SHA-256: `cbe71266d9b256cb9c480999b78da2fd274b7f0a734ad7d8bfc5d9b989b06c61`
 

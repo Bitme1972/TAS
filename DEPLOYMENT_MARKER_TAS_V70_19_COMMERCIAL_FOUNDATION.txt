@@ -1,0 +1,7 @@
+Telemetry Assurance Studio
+Release: v70.19.0 Commercial Foundation
+Sprint: 1 — Commercial Architecture and Edition Separation
+Default Cloudflare edition: TAS Professional protected AURORA application
+Independent builds: Community, Professional, Consultant
+Payment integration: not included
+Production licensing: not included

@@ -4,7 +4,7 @@ param(
   [string]$ProjectName = "tas",
   [string]$PagesHost = "tas-duo.pages.dev",
   [string]$Branch = "main",
-  [string]$CommitMessage = "Deploy TAS v70.18.1 Foundation Lock",
+  [string]$CommitMessage = "Deploy TAS v70.20 Community",
   [switch]$DirectCloudflare,
   [switch]$GitOnly
 )
@@ -101,7 +101,7 @@ $RepoSearchRoot = $PackageParent
 if (Test-Path "C:\TAS") { $RepoSearchRoot = "C:\TAS" }
 
 Write-Host "============================================================"
-Write-Host "TAS v70.18.1 FOUNDATION LOCK ONE-CLICK RELEASE"
+Write-Host "TAS v70.20 COMMUNITY ONE-CLICK RELEASE"
 Write-Host "============================================================"
 Write-Host "Package folder:  $PackageFolder"
 Write-Host "Repository URL:  $RepoUrl"
@@ -123,18 +123,18 @@ Require-Command "node.exe" "Node.js"
 Require-Command "npm.cmd" "npm"
 if ($DirectCloudflare) { Require-Command "npx.cmd" "npx" }
 
-foreach ($required in @("src", "public", "functions", "scripts", "preview", "package.json", "package-lock.json", "index.html", "tsconfig.json", "wrangler.toml")) {
+foreach ($required in @("src", "public", "functions", "scripts", "preview", "config", "editions", "package.json", "package-lock.json", "index.html", "tsconfig.json", "wrangler.toml")) {
   if (-not (Test-Path (Join-Path $PackageFolder $required))) {
     Fail "The package is missing required item: $required"
   }
 }
 
-Write-Host "[1/10] Validating the AURORA source package..." -ForegroundColor Cyan
+Write-Host "[1/10] Validating the protected AURORA core and all independent editions..." -ForegroundColor Cyan
 Set-Location $PackageFolder
 & npm.cmd ci --no-audit --no-fund --progress=false
-if ($LASTEXITCODE -ne 0) { Fail "npm ci failed in the AURORA package." }
+if ($LASTEXITCODE -ne 0) { Fail "npm ci failed in the Sprint 2 package." }
 & npm.cmd run build
-if ($LASTEXITCODE -ne 0) { Fail "The AURORA package build or regression tests failed." }
+if ($LASTEXITCODE -ne 0) { Fail "The Sprint 2 package build or regression tests failed." }
 
 Write-Host "[2/10] Locating the correct Git repository..." -ForegroundColor Cyan
 $ResolvedRepo = Resolve-Repo $TargetRepo $RepoSearchRoot $RepoUrl
@@ -165,7 +165,7 @@ Write-Host "[3/10] Protecting any local repo changes and updating $Branch..." -F
 $dirtyState = @(& git.exe -C $ResolvedRepo status --porcelain)
 if ($LASTEXITCODE -ne 0) { Fail "Unable to read Git status in $ResolvedRepo" }
 if ($dirtyState.Count -gt 0) {
-  $backupLabel = "TAS v70.18.1 automatic backup " + (Get-Date -Format "yyyy-MM-dd_HH-mm-ss")
+  $backupLabel = "TAS v70.20 automatic backup " + (Get-Date -Format "yyyy-MM-dd_HH-mm-ss")
   Write-Host "Existing local repo changes detected. Saving them safely in Git stash..." -ForegroundColor Yellow
   & git.exe -C $ResolvedRepo stash push --include-untracked -m $backupLabel
   if ($LASTEXITCODE -ne 0) { Fail "Could not protect the existing local repo changes with Git stash." }
@@ -194,12 +194,12 @@ if ($remoteBranchExists) {
 $packageResolved = (Resolve-Path $PackageFolder).Path.TrimEnd('\')
 $repoResolved = (Resolve-Path $ResolvedRepo).Path.TrimEnd('\')
 if ($packageResolved -ieq $repoResolved) {
-  Fail "The source package folder and Git repository folder must be separate. Keep the package at C:\TAS\TAS_v70_18_1_FOUNDATION_LOCK and the repository at C:\TAS\tas."
+  Fail "The source package folder and Git repository folder must be separate. Keep the package at C:\TAS\TAS_v70_20_COMMUNITY and the repository at C:\TAS\tas."
 }
 
 Write-Host "[4/10] Cleaning the repository and installing the TAS-only application..." -ForegroundColor Cyan
 Get-ChildItem -Force -Path $ResolvedRepo | Where-Object { $_.Name -ne ".git" } | Remove-Item -Recurse -Force
-$releaseFolders = @("src", "public", "functions", "scripts", "preview")
+$releaseFolders = @("src", "public", "functions", "scripts", "preview", "config", "editions")
 foreach ($folder in $releaseFolders) {
   $destination = Join-Path $ResolvedRepo $folder
   Remove-Item $destination -Recurse -Force -ErrorAction SilentlyContinue
@@ -237,6 +237,11 @@ $repoRequiredFiles = @(
   "RUN_ME_DEPLOY_GIT_ONLY.ps1",
   "RUN_ME_DEPLOY_GIT_AND_CLOUDFLARE_DIRECT.ps1",
   "RUN_ME_FIRST_TIME_GIT_SETUP.cmd",
+  "RUN_ME_LOCAL_EDITION_PREVIEWS.cmd",
+  "config/edition-entitlements.json",
+  "editions/community/index.html",
+  "editions/professional/index.html",
+  "editions/consultant/index.html",
   "preview/TAS_v70_18_AURORA_Dashboard.png",
   "preview/TAS_v70_18_AURORA_Evidence_Intake.png"
 )
@@ -263,6 +268,12 @@ Set-Location $ResolvedRepo
 if ($LASTEXITCODE -ne 0) { Fail "npm ci failed in the Git repository. Nothing was committed." }
 & npm.cmd run build
 if ($LASTEXITCODE -ne 0) { Fail "The repository build or regression tests failed. Nothing was committed." }
+foreach ($edition in @("community", "professional", "consultant")) {
+  $editionManifest = Join-Path $ResolvedRepo ("dist-editions/" + $edition + "/TAS_EDITION_MANIFEST.json")
+  if (-not (Test-Path $editionManifest)) {
+    Fail "The repository build is missing the independent edition manifest: $edition"
+  }
+}
 
 Write-Host "[6/10] Preparing the Git commit..." -ForegroundColor Cyan
 & git.exe add -A
@@ -273,7 +284,7 @@ $hasNoChanges = ($LASTEXITCODE -eq 0)
 if ($hasNoChanges) {
   Write-Host "No file changes were detected. The repository is already on this release." -ForegroundColor Yellow
 } else {
-  Write-Host "[7/10] Committing TAS v70.18.1 Foundation Lock..." -ForegroundColor Cyan
+  Write-Host "[7/10] Committing TAS v70.20 Community..." -ForegroundColor Cyan
   & git.exe commit -m $CommitMessage
   if ($LASTEXITCODE -ne 0) { Fail "git commit failed. Check the configured Git name and email." }
 
@@ -300,9 +311,9 @@ Write-Host "[10/10] RELEASE COMPLETE" -ForegroundColor Green
 Write-Host ""
 Write-Host "Git repository: $ResolvedRepo"
 if (-not $GitOnly) {
-  Write-Host "Cloudflare:     https://$PagesHost/studio?v=70181"
-  Write-Host "Release marker: https://$PagesHost/DEPLOYMENT_MARKER_TAS_V70_18_1_FOUNDATION_LOCK.txt"
+  Write-Host "Cloudflare:     https://$PagesHost/studio?v=70200"
+  Write-Host "Release marker: https://$PagesHost/DEPLOYMENT_MARKER_TAS_V70_20_COMMUNITY.txt"
 }
 Write-Host ""
-Write-Host "TAS v70.18.1 Foundation Lock has passed both package and repository validation." -ForegroundColor Green
+Write-Host "TAS v70.20 Community has passed package, repository and independent-edition validation." -ForegroundColor Green
 Wait-ForDan

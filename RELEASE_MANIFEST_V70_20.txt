@@ -1,0 +1,30 @@
+TAS v70.20 COMMUNITY - RELEASE MANIFEST
+=======================================
+
+Release identity
+- Package: TAS_v70_20_COMMUNITY
+- npm name: tas-v70-20-community
+- Version: 70.20.0
+- Sprint: 2 - Community Edition
+
+Primary outputs
+- dist: protected Professional/AURORA Cloudflare output
+- dist-editions/community: Community v70.20 product
+- dist-editions/professional: Professional edition build
+- dist-editions/consultant: Consultant edition build
+
+Validation evidence
+- TAS_V70_20_COMMUNITY_VALIDATION_REPORT.md
+- BUILD_TEST_EVIDENCE_TAS_V70_20_COMMUNITY.txt
+- FOUNDATION_BASELINE_MANIFEST.json
+- EXPECTED_AURORA_ASSET_HASHES.txt
+- dist-editions/*/TAS_EDITION_MANIFEST.json
+
+Local-only entry points
+- TEST_ALL_CAPABILITIES.cmd
+- RUN_ME_LOCAL_CLOUDFLARE_READY.cmd
+- RUN_ME_LOCAL_EDITION_PREVIEWS.cmd
+- BUILD_RELEASE_PACKAGE.cmd
+
+Deployment
+- No automatic deployment is performed by validation or preview runners.

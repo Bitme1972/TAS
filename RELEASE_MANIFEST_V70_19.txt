@@ -1,0 +1,23 @@
+TAS v70.19.0 Commercial Foundation
+
+Protected core:
+- src/App.tsx
+- src/tasEngine.ts
+- src/styles.css
+- src/main.tsx
+- all premium source datasets
+- both AURORA baseline screenshots
+
+Sprint 1 additions:
+- config/edition-entitlements.json
+- editions/community/index.html
+- editions/professional/index.html
+- editions/consultant/index.html
+- src/editions/*
+- src/community/*
+- independent dist-editions outputs
+- edition manifests and isolation gates
+
+Default deployment output: dist (Professional/AURORA)
+No source code is removed from this development package.
+Customer packaging and source removal belong to the Professional release sprint.

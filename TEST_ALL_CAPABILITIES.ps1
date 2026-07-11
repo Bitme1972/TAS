@@ -16,12 +16,12 @@ function Fail([string]$Message) {
 }
 
 Write-Host "============================================================"
-Write-Host "TAS v70.18.1 FOUNDATION LOCK - FULL CAPABILITY VALIDATION"
+Write-Host "TAS v70.20 COMMUNITY - FULL CAPABILITY VALIDATION"
 Write-Host "============================================================"
 Write-Host "Local validation only. Nothing will be deployed."
 Write-Host ""
 
-foreach ($required in @("src", "scripts", "functions", "public", "preview", "package.json", "package-lock.json", "FOUNDATION_BASELINE_MANIFEST.json", "EXPECTED_AURORA_ASSET_HASHES.txt")) {
+foreach ($required in @("src", "scripts", "functions", "public", "preview", "config", "editions", "package.json", "package-lock.json", "FOUNDATION_BASELINE_MANIFEST.json", "EXPECTED_AURORA_ASSET_HASHES.txt")) {
   if (!(Test-Path (Join-Path $PackageFolder $required))) { Fail "Missing required package item: $required" }
 }
 
@@ -32,9 +32,11 @@ if (-not $KeepDependencies) {
   Write-Host "[1/4] Removing previous dependency and build output..." -ForegroundColor Cyan
   if (Test-Path ".\node_modules") { Remove-Item ".\node_modules" -Recurse -Force }
   if (Test-Path ".\dist") { Remove-Item ".\dist" -Recurse -Force }
+  if (Test-Path ".\dist-editions") { Remove-Item ".\dist-editions" -Recurse -Force }
 } else {
   Write-Host "[1/4] Keeping the existing dependency folder as requested..." -ForegroundColor Cyan
   if (Test-Path ".\dist") { Remove-Item ".\dist" -Recurse -Force }
+  if (Test-Path ".\dist-editions") { Remove-Item ".\dist-editions" -Recurse -Force }
 }
 
 Write-Host "[2/4] Installing the exact dependency lock..." -ForegroundColor Cyan
@@ -48,7 +50,7 @@ if ($LASTEXITCODE -ne 0) { Fail "Build or validation failed." }
 Write-Host "[4/4] Recording the local pass marker..." -ForegroundColor Cyan
 $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss K"
 @"
-TAS v70.18.1 Foundation Lock validation passed.
+TAS v70.20 Community validation passed.
 Time: $stamp
 Mode: Local only
 Git: no commit, no push
@@ -57,8 +59,9 @@ Command: npm ci + npm run validate
 "@ | Set-Content ".\LOCAL_VALIDATION_PASSED.txt" -Encoding UTF8
 
 Write-Host ""
-Write-Host "[PASS] TAS v70.18.1 Foundation Lock is clean-build validated." -ForegroundColor Green
-Write-Host "Report: TAS_V70_18_1_FOUNDATION_LOCK_VALIDATION_REPORT.md"
-Write-Host "Local preview: double-click RUN_ME_LOCAL_CLOUDFLARE_READY.cmd"
+Write-Host "[PASS] TAS v70.20 Community and all three editions are clean-build validated." -ForegroundColor Green
+Write-Host "Report: TAS_V70_20_COMMUNITY_VALIDATION_REPORT.md"
+Write-Host "Professional preview: double-click RUN_ME_LOCAL_CLOUDFLARE_READY.cmd
+Edition previews: double-click RUN_ME_LOCAL_EDITION_PREVIEWS.cmd"
 Write-Host ""
 [void](Read-Host "Press Enter to close")

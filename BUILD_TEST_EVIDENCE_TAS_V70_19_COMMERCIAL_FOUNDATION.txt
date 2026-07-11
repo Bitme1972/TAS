@@ -1,0 +1,28 @@
+============================================================
+TAS v70.19 COMMERCIAL FOUNDATION - BUILD AND TEST EVIDENCE
+============================================================
+Generated UTC: 2026-07-11T12:47:41.138Z
+Validation command: npm run validate
+Result: PASS
+
+Protected baseline:
+- 13 Foundation Lock files unchanged
+- 4 deterministic AURORA build outputs unchanged
+- All inherited TAS v70 through v70.18 gates passed
+
+Independent editions:
+- TAS Community: 3 files, 209728 bytes, manifest SHA-256 d20e19992bc774e5a5df6f05a90fef1d582fb6a5773c71fe4c730c268b7713f5
+- TAS Professional: 3 files, 1380471 bytes, manifest SHA-256 125989519b8fd2d14ca05fd7f4c03f0d1d32e2f3a660f540de3751a3ea148b85
+- TAS Consultant: 3 files, 1380465 bytes, manifest SHA-256 79817f85bc8f67415313556209a90b0652c93b91f794400549eb3857d728360d
+
+Commercial boundary:
+- Community uses an independent entry point, parser, controls and stylesheet
+- Community premium sentinel scan passed
+- Community relative asset-route resolution passed
+- Professional remains the default Cloudflare dist output
+- Consultant has an independent edition identity
+
+Deployment:
+- No Git commit
+- No Git push
+- No Cloudflare deployment

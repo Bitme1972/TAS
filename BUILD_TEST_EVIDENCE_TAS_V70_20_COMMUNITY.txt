@@ -1,0 +1,38 @@
+TAS v70.20 COMMUNITY - BUILD AND TEST EVIDENCE
+================================================
+
+Sprint objective
+----------------
+Turn the independently compiled Community architecture into a useful free product without exposing Professional or Consultant code.
+
+Implemented capability
+----------------------
+- One plain-text evidence file or pasted evidence item
+- One asset per assessment, enforced by parser validation
+- Maximum Community evidence size of 1 MB
+- Automatic role and operating-system assistance with explicit user override
+- Selected Windows audit assurance controls
+- Selected Microsoft, CIS and NIST CSF alignment lenses
+- Selected Event ID names and remediation context
+- Honest Aligned, Partial, Gap and Not found outcomes
+- Browser-local SHA-256 evidence receipt
+- Self-contained watermarked HTML report
+- Raw evidence excluded from generated report
+- Professional capability preview without fabricated hidden findings
+- No account requirement and no evidence upload endpoint
+
+Protected capability
+--------------------
+- All 13 Foundation Lock AURORA files remain byte-identical
+- Deterministic Professional/AURORA default build remains unchanged
+- Community does not import App.tsx, tasEngine.ts or src/data
+- Premium Golden comparison, multi-asset analysis, complete Event ID data and commercial reporting rights remain absent
+
+Validation command
+------------------
+npm ci --no-audit --no-fund --progress=false
+npm run validate
+
+Deployment behaviour
+--------------------
+Validation is local-only. No Git commit, Git push or Cloudflare deployment occurs.

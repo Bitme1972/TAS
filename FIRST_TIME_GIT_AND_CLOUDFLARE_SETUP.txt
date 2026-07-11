@@ -1,27 +1,17 @@
-TAS v70.18.1 Foundation Lock — CLEAN FIRST-TIME SETUP
-============================================
+TAS v70.20 Community - FIRST-TIME GITHUB SETUP
+==========================================================
 
-Folder separation
------------------
-Keep the separate fashion project in its own existing folder.
-C:\TAS is reserved exclusively for Telemetry Assurance Studio.
+Folders:
+C:\TAS\TAS_v70_19_COMMERCIAL_FOUNDATION   source package
+C:\TAS\tas                                Git repository
 
-Use these two separate TAS folders:
-C:\TAS\TAS_v70_18_1_FOUNDATION_LOCK   source package
-C:\TAS\tas                 local clone of https://github.com/Bitme1972/tas.git
+For the first Git-only release, double-click RUN_ME_FIRST_TIME_GIT_SETUP.cmd.
+This validates the protected AURORA core and all three independent editions before pushing.
+It deliberately does not assume or change Cloudflare.
 
-First release order
--------------------
-1. Run RUN_ME_FIRST_TIME_GIT_SETUP.cmd
-2. Confirm the v70.18.1 files appear in GitHub repository Bitme1972/tas
-3. In Cloudflare create a new Pages project named tas from the existing Git repository Bitme1972/tas
-4. Set Production branch to main
-5. Set Build command to npm run build
-6. Set Build output directory to dist
-7. Leave Root directory blank
-8. Save and Deploy
-9. After the pages.dev site works, add auditpol.com under Custom domains
+After the GitHub repository is connected to Cloudflare project tas, later releases may use
+RUN_ME_DEPLOY_TO_GIT_AND_CLOUDFLARE.cmd or RUN_ME_DEPLOY_GIT_AND_CLOUDFLARE_DIRECT.cmd.
 
-Future releases
----------------
-Use RUN_ME_DEPLOY_TO_GIT_AND_CLOUDFLARE.cmd after the Cloudflare Git integration exists.
+Cloudflare build command: npm run build
+Cloudflare output directory: dist
+Default Sprint 2 default public edition: TAS Professional

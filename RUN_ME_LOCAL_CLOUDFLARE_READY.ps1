@@ -17,7 +17,7 @@ function Fail($Message) {
 $PackageFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 Write-Host "============================================================"
-Write-Host "TAS v70.18.1 FOUNDATION LOCK - LOCAL PREVIEW RUNNER"
+Write-Host "TAS v70.20 COMMUNITY - PROFESSIONAL LOCAL PREVIEW"
 Write-Host "============================================================"
 Write-Host "Package folder: $PackageFolder"
 Write-Host "Local port:     $Port"
@@ -36,7 +36,7 @@ Write-Host ""
 
 Set-Location $PackageFolder
 
-foreach ($required in @("src", "scripts", "functions", "public", "package.json", "package-lock.json", "index.html", "tsconfig.json", "wrangler.toml")) {
+foreach ($required in @("src", "scripts", "functions", "public", "config", "editions", "package.json", "package-lock.json", "index.html", "tsconfig.json", "wrangler.toml")) {
   if (!(Test-Path (Join-Path $PackageFolder $required))) {
     Fail "Missing required Cloudflare package item: $required"
   }
@@ -47,6 +47,7 @@ if ($CleanInstall) {
   if (Test-Path ".\node_modules") { Remove-Item ".\node_modules" -Recurse -Force }
 }
 if (Test-Path ".\dist") { Remove-Item ".\dist" -Recurse -Force }
+if (Test-Path ".\dist-editions") { Remove-Item ".\dist-editions" -Recurse -Force }
 npm.cmd ci --no-audit --no-fund --progress=false
 if ($LASTEXITCODE -ne 0) { Fail "Dependency install failed." }
 
@@ -55,7 +56,7 @@ npm.cmd run build
 if ($LASTEXITCODE -ne 0) { Fail "Build or validation gate failed." }
 
 Write-Host "[3/5] Checking Cloudflare build output..."
-foreach ($requiredDist in @("dist", "dist\index.html", "dist\studio\index.html", "dist\DEPLOYMENT_MARKER_TAS_V70_3_GOLDEN_COMPARE.txt")) {
+foreach ($requiredDist in @("dist", "dist\index.html", "dist\studio\index.html", "dist\DEPLOYMENT_MARKER_TAS_V70_3_GOLDEN_COMPARE.txt", "dist\DEPLOYMENT_MARKER_TAS_V70_20_COMMUNITY.txt", "dist\TAS_DEPLOYED_EDITION.json", "dist-editions\community\TAS_EDITION_MANIFEST.json", "dist-editions\professional\TAS_EDITION_MANIFEST.json", "dist-editions\consultant\TAS_EDITION_MANIFEST.json")) {
   if (!(Test-Path $requiredDist)) {
     Fail "Missing expected Cloudflare dist output: $requiredDist"
   }
@@ -64,7 +65,7 @@ foreach ($requiredDist in @("dist", "dist\index.html", "dist\studio\index.html",
 Write-Host "[4/5] Writing local validation marker..."
 $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 @"
-TAS v70.18.1 Foundation Lock local preview validation passed.
+TAS v70.20 Community Professional local preview validation passed.
 Time: $stamp
 Mode: Local only
 Git: no commit, no push
@@ -77,7 +78,7 @@ Write-Host "Open in Chrome:"
 Write-Host "  http://localhost:$Port/studio?localCloudflareReady=1"
 Write-Host ""
 Write-Host "Extra check:"
-Write-Host "  http://localhost:$Port/DEPLOYMENT_MARKER_TAS_V70_3_GOLDEN_COMPARE.txt"
+Write-Host "  http://localhost:$Port/DEPLOYMENT_MARKER_TAS_V70_20_COMMUNITY.txt"
 Write-Host ""
 Write-Host "Press CTRL+C in this window to stop the local server."
 Write-Host ""

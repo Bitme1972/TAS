@@ -1,63 +1,33 @@
-TAS v70.18.1 Foundation Lock - EXACT DEPLOYMENT GUIDE
-==========================================
+TAS v70.20 Community - DEPLOYMENT GUIDE
+===================================================
 
-A. PREPARE THE FOLDERS
-1. Open C:\TAS
-2. Rename any previous C:\TAS\TAS_v70_18_1_FOUNDATION_LOCK folder to TAS_v70_18_1_FOUNDATION_LOCK_OLD
-3. Extract the complete release ZIP directly into C:\TAS
-4. Confirm this exact file exists:
-   C:\TAS\TAS_v70_18_1_FOUNDATION_LOCK\RUN_THIS_NOW_DEPLOY_TAS.cmd
-5. Leave C:\TAS\tas in place. The runner recognises and updates it safely.
+SAFE DEFAULT
+------------
+Run TEST_ALL_CAPABILITIES.cmd first. It is local-only and deploys nothing.
 
-B. CONFIRM CLOUDFLARE SETTINGS
-1. Sign in to Cloudflare
-2. Open Workers & Pages
-3. Open the Pages project named tas
-4. Open Settings
-5. Open Builds & deployments or Build configurations
-6. Confirm:
-   Production branch: main
-   Framework preset: Vite, or None if Vite is not shown
-   Build command: npm run build
-   Build output directory: dist
-   Root directory: blank
-7. Save changes
+DIRECT GITHUB + CLOUDFLARE RELEASE
+----------------------------------
+1. Keep this package at:
+   C:\TAS\TAS_v70_19_COMMERCIAL_FOUNDATION
 
-C. RELEASE TAS
-1. Double-click RUN_THIS_NOW_DEPLOY_TAS.cmd
-2. Allow the PowerShell window to run
-3. The runner performs two full builds and the regression gates
-4. Do not close the window
-5. Success is shown as:
-   [10/10] RELEASE COMPLETE
+2. Keep the Git clone separate at:
+   C:\TAS\tas
 
-D. VERIFY GITHUB
-1. Open GitHub repository Bitme1972/tas
-2. Refresh the Code page
-3. Confirm the newest commit says:
-   Deploy TAS v70.18.1 Foundation Lock Command Centre
-4. Open package.json and confirm:
-   name: tas-v70-18-1-foundation-lock
-   version: 70.18.1
+3. Double-click:
+   RUN_ME_DEPLOY_GIT_AND_CLOUDFLARE_DIRECT.cmd
 
-E. VERIFY CLOUDFLARE
-1. Return to Workers & Pages > tas > Deployments
-2. A new deployment from main should start automatically
-3. Wait for Status: Success
-4. Open https://tas-duo.pages.dev
-5. Open https://tas-duo.pages.dev/studio?v=70181
-6. Press Ctrl+F5 in Chrome
-7. Confirm the AURORA Command Centre loads
+The runner validates the package, locates or clones https://github.com/Bitme1972/tas.git,
+protects uncommitted repository work, copies the complete TAS source including config and
+all edition entry points, rebuilds the repository, verifies three edition manifests, commits,
+pushes and deploys only the protected Professional dist folder to Cloudflare project tas.
 
-F. CONNECT AUDITPOL.COM
-1. In Workers & Pages > tas, open Custom domains
-2. Select Set up a custom domain
-3. Enter auditpol.com
-4. Continue and activate the domain
-5. Wait until the domain status becomes Active
-6. Test https://auditpol.com and https://auditpol.com/studio?v=70181
+DEFAULT PUBLIC OUTPUT
+---------------------
+Cloudflare receives dist only. During Sprint 2 this is the protected Professional/AURORA app.
+Community and Consultant are compiled independently under dist-editions for validation and
+local review but are not made public by the direct Cloudflare command.
 
-IMPORTANT
----------
-TAS uses only C:\TAS, GitHub Bitme1972/tas and Cloudflare Pages project tas.
-Do not place this package inside another product folder and do not connect it to another product repository or Cloudflare project.
+NO-PUSH GUARANTEE
+-----------------
+If package validation, repository copy verification, any inherited test or any edition gate
+fails before the Git commit stage, no commit or push occurs.

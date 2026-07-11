@@ -1,0 +1,21 @@
+TAS v70.20 COMMUNITY
+===================
+
+THIS IS SPRINT 2.
+
+1. Double-click TEST_ALL_CAPABILITIES.cmd first.
+2. Wait for the green PASS message.
+3. Double-click RUN_ME_LOCAL_EDITION_PREVIEWS.cmd.
+4. Open the Community product:
+   http://localhost:8790/community/
+5. For the ready-loaded safe demonstration, open:
+   http://localhost:8790/community/?demo=1
+
+Professional remains available at:
+   http://localhost:8790/professional/
+
+Consultant remains available at:
+   http://localhost:8790/consultant/
+
+Nothing is deployed by these local runners.
+Use RUN_ME_DEPLOY_GIT_AND_CLOUDFLARE_DIRECT.cmd only when deployment is deliberately requested.

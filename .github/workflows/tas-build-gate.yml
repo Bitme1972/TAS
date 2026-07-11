@@ -1,4 +1,4 @@
-name: TAS Foundation Lock build gate
+name: TAS v70.20 Community gate
 
 on:
   push:
@@ -20,16 +20,18 @@ jobs:
       - name: Verify generated folders are not tracked
         shell: bash
         run: |
-          test -z "$(git ls-files node_modules dist)"
+          test -z "$(git ls-files node_modules dist dist-editions)"
       - name: Install exact dependency lock
         run: npm ci --no-audit --no-fund
-      - name: Build and run all TAS gates
+      - name: Build protected core and independent editions
         run: npm run validate
       - name: Upload validation evidence
         uses: actions/upload-artifact@v4
         with:
-          name: tas-v70-18-1-foundation-lock-evidence
+          name: tas-v70-20-community-evidence
           path: |
-            TAS_V70_18_1_FOUNDATION_LOCK_VALIDATION_REPORT.md
+            TAS_V70_20_COMMUNITY_VALIDATION_REPORT.md
             FOUNDATION_BASELINE_MANIFEST.json
             EXPECTED_AURORA_ASSET_HASHES.txt
+            config/edition-entitlements.json
+            dist-editions/*/TAS_EDITION_MANIFEST.json

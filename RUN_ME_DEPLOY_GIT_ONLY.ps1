@@ -2,7 +2,7 @@ param(
   [string]$TargetRepo = "",
   [string]$RepoUrl = "https://github.com/Bitme1972/tas.git",
   [string]$Branch = "main",
-  [string]$CommitMessage = "Deploy TAS v70.18.1 Foundation Lock"
+  [string]$CommitMessage = "Deploy TAS v70.20 Community"
 )
 
 & "$PSScriptRoot\RUN_ME_DEPLOY_TO_GIT_AND_CLOUDFLARE.ps1" `

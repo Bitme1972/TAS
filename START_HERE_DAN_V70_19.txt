@@ -1,0 +1,15 @@
+TAS v70.19 COMMERCIAL FOUNDATION
+================================
+
+1. Double-click TEST_ALL_CAPABILITIES.cmd first.
+2. Wait for the green PASS message.
+3. Double-click RUN_ME_LOCAL_CLOUDFLARE_READY.cmd to view the protected Professional build.
+4. Double-click RUN_ME_LOCAL_EDITION_PREVIEWS.cmd to build and view all three independent editions.
+5. Open:
+   Professional default: http://localhost:8787/studio?localCloudflareReady=1
+   Edition preview server: http://localhost:8790/community/
+   Edition preview server: http://localhost:8790/professional/
+   Edition preview server: http://localhost:8790/consultant/
+
+Nothing is deployed by either local runner.
+Use RUN_ME_DEPLOY_GIT_AND_CLOUDFLARE_DIRECT.cmd only when a deployment is deliberately required.

@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "release": "70.20.0",
+  "editions": {
+    "community": {
+      "id": "community",
+      "displayName": "TAS Community",
+      "productName": "Telemetry Assurance Studio Community",
+      "purpose": "A useful, privacy-first introduction to Windows audit assurance.",
+      "capabilities": {
+        "singleEvidenceIntake": true,
+        "multiEvidenceIntake": false,
+        "basicAssurance": true,
+        "advancedAssurance": false,
+        "goldenComparison": false,
+        "customGoldenBaseline": false,
+        "beforeAfterComparison": false,
+        "fullReportExports": false,
+        "eventIntelligence": false,
+        "commercialClientUse": false,
+        "customBranding": false,
+        "annualUpdates": false,
+        "priorityUpdates": false,
+        "watermarkedHtmlReport": true,
+        "evidenceReceipt": true,
+        "limitedEventIntelligence": true,
+        "professionalUpgradePreview": true
+      },
+      "limits": {
+        "maxEvidenceFilesPerAssessment": 1,
+        "maxAssetsPerAssessment": 1,
+        "frameworkDepth": "selected",
+        "reportWatermark": true
+      }
+    },
+    "professional": {
+      "id": "professional",
+      "displayName": "TAS Professional",
+      "productName": "Telemetry Assurance Studio Professional",
+      "purpose": "The complete standalone assurance product for security engineers.",
+      "capabilities": {
+        "singleEvidenceIntake": true,
+        "multiEvidenceIntake": true,
+        "basicAssurance": true,
+        "advancedAssurance": true,
+        "goldenComparison": true,
+        "customGoldenBaseline": true,
+        "beforeAfterComparison": true,
+        "fullReportExports": true,
+        "eventIntelligence": true,
+        "commercialClientUse": false,
+        "customBranding": false,
+        "annualUpdates": true,
+        "priorityUpdates": false,
+        "watermarkedHtmlReport": false,
+        "evidenceReceipt": true,
+        "limitedEventIntelligence": false,
+        "professionalUpgradePreview": false
+      },
+      "limits": {
+        "maxEvidenceFilesPerAssessment": "unlimited",
+        "maxAssetsPerAssessment": "unlimited",
+        "frameworkDepth": "full",
+        "reportWatermark": false
+      }
+    },
+    "consultant": {
+      "id": "consultant",
+      "displayName": "TAS Consultant",
+      "productName": "Telemetry Assurance Studio Consultant",
+      "purpose": "The commercial client-assessment edition for independent consultants.",
+      "capabilities": {
+        "singleEvidenceIntake": true,
+        "multiEvidenceIntake": true,
+        "basicAssurance": true,
+        "advancedAssurance": true,
+        "goldenComparison": true,
+        "customGoldenBaseline": true,
+        "beforeAfterComparison": true,
+        "fullReportExports": true,
+        "eventIntelligence": true,
+        "commercialClientUse": true,
+        "customBranding": true,
+        "annualUpdates": true,
+        "priorityUpdates": true,
+        "watermarkedHtmlReport": false,
+        "evidenceReceipt": true,
+        "limitedEventIntelligence": false,
+        "professionalUpgradePreview": false
+      },
+      "limits": {
+        "maxEvidenceFilesPerAssessment": "unlimited",
+        "maxAssetsPerAssessment": "unlimited",
+        "frameworkDepth": "full",
+        "reportWatermark": false
+      }
+    }
+  }
+}
