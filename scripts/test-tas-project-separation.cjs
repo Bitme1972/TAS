@@ -4,9 +4,9 @@ const path = require('path');
 const roots = ['src', 'scripts', '.github', 'public', 'functions'];
 const files = ['index.html', 'package.json', 'package-lock.json', 'wrangler.toml',
   'RUN_ME_DEPLOY_TO_GIT_AND_CLOUDFLARE.ps1', 'RUN_ME_DEPLOY_GIT_AND_CLOUDFLARE_DIRECT.ps1',
-  'RUN_ME_DEPLOY_GIT_ONLY.ps1', 'START_HERE_DAN_V70_18.txt',
+  'RUN_ME_DEPLOY_GIT_ONLY.ps1', 'START_HERE_DAN_V70_18_1.txt',
   'FIRST_TIME_GIT_AND_CLOUDFLARE_SETUP.txt', 'DEPLOYMENT_GUIDE_GITHUB_CLOUDFLARE.txt',
-  'RUN_THIS_NOW_DEPLOY_TAS.cmd', 'TAS_V70_18_AURORA_VALIDATION_REPORT.md'];
+  'RUN_THIS_NOW_DEPLOY_TAS.cmd', 'TAS_V70_18_1_FOUNDATION_LOCK_VALIDATION_REPORT.md'];
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];

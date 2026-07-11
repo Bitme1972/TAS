@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "release": "70.18.1",
+  "baseline": "70.18.0 AURORA",
+  "purpose": "Sprint 0 Foundation Lock. Protected application, engine, data and baseline screenshots are byte-identical to v70.18.0.",
+  "sourceArchiveSha256": "cbe71266d9b256cb9c480999b78da2fd274b7f0a734ad7d8bfc5d9b989b06c61",
+  "protectedFiles": [
+    {
+      "path": "src/App.tsx",
+      "sha256": "f7b3ade93824d039a5fa99ddad514a5d6282e9cd86312f96bb8033032d5937e6",
+      "bytes": 110550
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "0cbf2d9a445c73e80712eb24ca9d77e6d5b819053a4c367a4fbd8ad7d9fde07e",
+      "bytes": 106356
+    },
+    {
+      "path": "src/tasEngine.ts",
+      "sha256": "f8621cb4c61e3afd0d367012324b7880b764473dd441797d4eb1e76a374d42a7",
+      "bytes": 30376
+    },
+    {
+      "path": "src/main.tsx",
+      "sha256": "04ae123df4abd895b1b8e4c9329ab6c77699cd5f29f07cf0c2f818965425f4b6",
+      "bytes": 237
+    },
+    {
+      "path": "src/vite-env.d.ts",
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+      "bytes": 38
+    },
+    {
+      "path": "src/data/baseline_basic_audit.json",
+      "sha256": "47a8a3d0a144588424809e055925e47e1a0a9c19a4c773d802f647c734f2b293",
+      "bytes": 340115
+    },
+    {
+      "path": "src/data/baseline_advanced_audit.json",
+      "sha256": "ac1282b3e1ec70639ef171a5ef2ca5c9ca71c46454fceffc34cdde69379636ed",
+      "bytes": 192138
+    },
+    {
+      "path": "src/data/event_id_lookup.json",
+      "sha256": "42ec832677b0c88385c09fcee7beed075454d74555a4f8f214f0b7858c701100",
+      "bytes": 611379
+    },
+    {
+      "path": "src/data/EGoP_10_DCs_multi_auditpol.txt",
+      "sha256": "1dd3e81bcc472770bf1bcecd79e4695a0787177e053bd495c3af9d0fe5f144e5",
+      "bytes": 38182
+    },
+    {
+      "path": "src/data/EGoP_matrix_category_subcategory_3_DCs.txt",
+      "sha256": "0eb74e468a61a2493c5459a874b289fc0f780f3d9d2a20b70cdb26bf2f70a5c8",
+      "bytes": 6852
+    },
+    {
+      "path": "src/data/sample_two_assets_auditpol.txt",
+      "sha256": "bcad39ae5e85534b6927987761a404cfa569c149f89d6f307be4a5389fe8f5cf",
+      "bytes": 3615
+    },
+    {
+      "path": "preview/TAS_v70_18_AURORA_Dashboard.png",
+      "sha256": "ba2727757b96b254f12b830cf8cde111820af28efd0f0809bab08d482612e1e2",
+      "bytes": 637576
+    },
+    {
+      "path": "preview/TAS_v70_18_AURORA_Evidence_Intake.png",
+      "sha256": "73b34a44c35cb9d1626cb6812770a588d0167aabe55cf3279fb4969e391a321d",
+      "bytes": 414937
+    }
+  ],
+  "protectedCapabilities": [
+    "AURORA assurance command centre",
+    "multi-file Evidence Intake",
+    "Golden baseline comparison",
+    "Before and After comparison",
+    "commercial parity 28-block gate",
+    "50/50 desktop pane parity",
+    "output-friendly HTML editing and printing controls",
+    "Event ID intelligence, sorting, source and final column order",
+    "standalone desktop path",
+    "TAS-only Git and Cloudflare project separation"
+  ]
+}

@@ -1,0 +1,6 @@
+# TAS v70.18.0 AURORA clean-build output retained by v70.18.1 Foundation Lock
+# SHA-256  relative path
+6ba90dfe50dcd9ed920ab64943c9a8373dfdbc42d64eed0b7890a9148f762b20  dist/index.html
+6ba90dfe50dcd9ed920ab64943c9a8373dfdbc42d64eed0b7890a9148f762b20  dist/studio/index.html
+cc887ecc7259e9bbad8f870006f4fc0c3f354e82eb1fdb3f077ff88a6d3a853a  dist/assets/index-DE2vaOoG.js
+df51e7b1dab8225b79b91c5e354525d4f3c0cd7fa5ca6fb7bddd6b0fea077743  dist/assets/index-ewaeTsqZ.css

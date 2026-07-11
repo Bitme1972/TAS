@@ -1,4 +1,4 @@
-TAS v70.18 AURORA — CLEAN FIRST-TIME SETUP
+TAS v70.18.1 Foundation Lock — CLEAN FIRST-TIME SETUP
 ============================================
 
 Folder separation
@@ -7,13 +7,13 @@ Keep the separate fashion project in its own existing folder.
 C:\TAS is reserved exclusively for Telemetry Assurance Studio.
 
 Use these two separate TAS folders:
-C:\TAS\TAS_v70_18_AURORA   source package
+C:\TAS\TAS_v70_18_1_FOUNDATION_LOCK   source package
 C:\TAS\tas                 local clone of https://github.com/Bitme1972/tas.git
 
 First release order
 -------------------
 1. Run RUN_ME_FIRST_TIME_GIT_SETUP.cmd
-2. Confirm the v70.18 files appear in GitHub repository Bitme1972/tas
+2. Confirm the v70.18.1 files appear in GitHub repository Bitme1972/tas
 3. In Cloudflare create a new Pages project named tas from the existing Git repository Bitme1972/tas
 4. Set Production branch to main
 5. Set Build command to npm run build

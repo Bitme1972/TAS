@@ -1,0 +1,44 @@
+TAS v70.18.1 FOUNDATION LOCK
+============================
+
+DAN — SPRINT 0 IS THE PROTECTED AURORA BASELINE.
+
+HOTFIX 1: WINDOWS NODE 24 VALIDATION REPORT FIXED
+------------------------------------------------
+The final report writer no longer launches npm.cmd, preventing spawnSync EINVAL.
+TAS application capabilities and AURORA output remain unchanged.
+
+FIRST ACTION — LOCAL VALIDATION ONLY
+------------------------------------
+1. Extract the ZIP to C:\TAS\TAS_v70_18_1_FOUNDATION_LOCK
+2. Double-click TEST_ALL_CAPABILITIES.cmd
+3. Wait for [PASS] TAS v70.18.1 Foundation Lock is clean-build validated
+4. Open TAS_V70_18_1_FOUNDATION_LOCK_VALIDATION_REPORT.md if you want the evidence
+
+LOCAL PREVIEW
+-------------
+1. Double-click RUN_ME_LOCAL_CLOUDFLARE_READY.cmd
+2. Open http://localhost:8787/studio?localCloudflareReady=1
+3. Press Ctrl+C in the runner window when finished
+
+WHAT SPRINT 0 PROTECTS
+----------------------
+- AURORA appearance and command centre
+- TAS assurance engine
+- Golden comparison
+- Before and After comparison
+- reporting and Event ID intelligence
+- embedded baseline and sample evidence data
+- all inherited validation gates
+
+WHAT SPRINT 0 DOES NOT ADD
+--------------------------
+- no Community edition restrictions
+- no real licence activation
+- no payments
+- no adverts
+- no public deployment performed during preparation
+
+DEPLOYMENT — ONLY WHEN INTENDED
+-------------------------------
+RUN_THIS_NOW_DEPLOY_TAS.cmd still validates, updates GitHub and allows the connected Cloudflare project to deploy. Do not use it merely to test locally.

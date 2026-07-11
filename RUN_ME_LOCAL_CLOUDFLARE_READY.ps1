@@ -17,7 +17,7 @@ function Fail($Message) {
 $PackageFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 Write-Host "============================================================"
-Write-Host "AuditPol TAS CLOUDFLARE PACKAGE - LOCAL READY RUNNER"
+Write-Host "TAS v70.18.1 FOUNDATION LOCK - LOCAL PREVIEW RUNNER"
 Write-Host "============================================================"
 Write-Host "Package folder: $PackageFolder"
 Write-Host "Local port:     $Port"
@@ -45,11 +45,9 @@ foreach ($required in @("src", "scripts", "functions", "public", "package.json",
 Write-Host "[1/5] Installing dependencies locally in this package folder..."
 if ($CleanInstall) {
   if (Test-Path ".\node_modules") { Remove-Item ".\node_modules" -Recurse -Force }
-  if (Test-Path ".\dist") { Remove-Item ".\dist" -Recurse -Force }
-  npm.cmd ci --no-audit --no-fund --progress=false
-} else {
-  npm.cmd install --no-audit --no-fund --progress=false
 }
+if (Test-Path ".\dist") { Remove-Item ".\dist" -Recurse -Force }
+npm.cmd ci --no-audit --no-fund --progress=false
 if ($LASTEXITCODE -ne 0) { Fail "Dependency install failed." }
 
 Write-Host "[2/5] Running production build and all TAS validation gates..."
@@ -66,7 +64,7 @@ foreach ($requiredDist in @("dist", "dist\index.html", "dist\studio\index.html",
 Write-Host "[4/5] Writing local validation marker..."
 $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 @"
-AuditPol TAS Cloudflare package local validation passed.
+TAS v70.18.1 Foundation Lock local preview validation passed.
 Time: $stamp
 Mode: Local only
 Git: no commit, no push

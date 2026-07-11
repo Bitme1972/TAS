@@ -1,4 +1,4 @@
-name: TAS build gate
+name: TAS Foundation Lock build gate
 
 on:
   push:
@@ -17,7 +17,19 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Install dependencies
+      - name: Verify generated folders are not tracked
+        shell: bash
+        run: |
+          test -z "$(git ls-files node_modules dist)"
+      - name: Install exact dependency lock
         run: npm ci --no-audit --no-fund
-      - name: Build and parity tests
-        run: npm run build
+      - name: Build and run all TAS gates
+        run: npm run validate
+      - name: Upload validation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: tas-v70-18-1-foundation-lock-evidence
+          path: |
+            TAS_V70_18_1_FOUNDATION_LOCK_VALIDATION_REPORT.md
+            FOUNDATION_BASELINE_MANIFEST.json
+            EXPECTED_AURORA_ASSET_HASHES.txt

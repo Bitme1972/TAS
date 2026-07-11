@@ -1,0 +1,25 @@
+AUDITPOL TELEMETRY ASSURANCE STUDIO
+Release: v70.18.1 Foundation Lock
+Sprint: 0 — Golden Baseline and Release Discipline
+Protected baseline: v70.18.0 AURORA Command Centre
+Build target: Static Vite application / Cloudflare Pages
+
+Primary source entry: src/App.tsx
+Assurance engine: src/tasEngine.ts
+Primary built entry: dist/index.html
+Studio route: dist/studio/index.html
+Master validation: TEST_ALL_CAPABILITIES.cmd
+Validation report: TAS_V70_18_1_FOUNDATION_LOCK_VALIDATION_REPORT.md
+Baseline hashes: FOUNDATION_BASELINE_MANIFEST.json
+Built-output hashes: EXPECTED_AURORA_ASSET_HASHES.txt
+Deployment marker: DEPLOYMENT_MARKER_TAS_V70_18_1_FOUNDATION_LOCK.txt
+
+Release guarantees:
+- Protected application, engine, data and preview files are byte-identical to v70.18.0
+- Exact npm dependency versions
+- Reproducible npm ci installation
+- Full inherited regression suite preserved
+- Foundation Lock baseline-integrity gate
+- Repository-copy parity gate protecting every manifest-listed file
+- node_modules excluded from delivery package
+- no deployment performed during package preparation

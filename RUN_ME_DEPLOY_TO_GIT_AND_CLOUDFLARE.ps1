@@ -4,7 +4,7 @@ param(
   [string]$ProjectName = "tas",
   [string]$PagesHost = "tas-duo.pages.dev",
   [string]$Branch = "main",
-  [string]$CommitMessage = "Deploy TAS v70.18 AURORA Command Centre",
+  [string]$CommitMessage = "Deploy TAS v70.18.1 Foundation Lock",
   [switch]$DirectCloudflare,
   [switch]$GitOnly
 )
@@ -101,7 +101,7 @@ $RepoSearchRoot = $PackageParent
 if (Test-Path "C:\TAS") { $RepoSearchRoot = "C:\TAS" }
 
 Write-Host "============================================================"
-Write-Host "TAS v70.18 AURORA ONE-CLICK RELEASE"
+Write-Host "TAS v70.18.1 FOUNDATION LOCK ONE-CLICK RELEASE"
 Write-Host "============================================================"
 Write-Host "Package folder:  $PackageFolder"
 Write-Host "Repository URL:  $RepoUrl"
@@ -123,7 +123,7 @@ Require-Command "node.exe" "Node.js"
 Require-Command "npm.cmd" "npm"
 if ($DirectCloudflare) { Require-Command "npx.cmd" "npx" }
 
-foreach ($required in @("src", "public", "functions", "scripts", "package.json", "package-lock.json", "index.html", "tsconfig.json", "wrangler.toml")) {
+foreach ($required in @("src", "public", "functions", "scripts", "preview", "package.json", "package-lock.json", "index.html", "tsconfig.json", "wrangler.toml")) {
   if (-not (Test-Path (Join-Path $PackageFolder $required))) {
     Fail "The package is missing required item: $required"
   }
@@ -165,7 +165,7 @@ Write-Host "[3/10] Protecting any local repo changes and updating $Branch..." -F
 $dirtyState = @(& git.exe -C $ResolvedRepo status --porcelain)
 if ($LASTEXITCODE -ne 0) { Fail "Unable to read Git status in $ResolvedRepo" }
 if ($dirtyState.Count -gt 0) {
-  $backupLabel = "TAS v70.18 automatic backup " + (Get-Date -Format "yyyy-MM-dd_HH-mm-ss")
+  $backupLabel = "TAS v70.18.1 automatic backup " + (Get-Date -Format "yyyy-MM-dd_HH-mm-ss")
   Write-Host "Existing local repo changes detected. Saving them safely in Git stash..." -ForegroundColor Yellow
   & git.exe -C $ResolvedRepo stash push --include-untracked -m $backupLabel
   if ($LASTEXITCODE -ne 0) { Fail "Could not protect the existing local repo changes with Git stash." }
@@ -194,12 +194,13 @@ if ($remoteBranchExists) {
 $packageResolved = (Resolve-Path $PackageFolder).Path.TrimEnd('\')
 $repoResolved = (Resolve-Path $ResolvedRepo).Path.TrimEnd('\')
 if ($packageResolved -ieq $repoResolved) {
-  Fail "The source package folder and Git repository folder must be separate. Keep the package at C:\TAS\TAS_v70_18_AURORA and the repository at C:\TAS\tas."
+  Fail "The source package folder and Git repository folder must be separate. Keep the package at C:\TAS\TAS_v70_18_1_FOUNDATION_LOCK and the repository at C:\TAS\tas."
 }
 
 Write-Host "[4/10] Cleaning the repository and installing the TAS-only application..." -ForegroundColor Cyan
 Get-ChildItem -Force -Path $ResolvedRepo | Where-Object { $_.Name -ne ".git" } | Remove-Item -Recurse -Force
-foreach ($folder in @("src", "public", "functions", "scripts")) {
+$releaseFolders = @("src", "public", "functions", "scripts", "preview")
+foreach ($folder in $releaseFolders) {
   $destination = Join-Path $ResolvedRepo $folder
   Remove-Item $destination -Recurse -Force -ErrorAction SilentlyContinue
   Copy-Item (Join-Path $PackageFolder $folder) $ResolvedRepo -Recurse -Force
@@ -229,14 +230,30 @@ $repoRequiredFiles = @(
   "RUN_ME_LOCAL_CLOUDFLARE_READY.ps1",
   "RUN_ME_LOCAL_CLOUDFLARE_READY.cmd",
   "RUN_ME_LOCAL_CLEAN_INSTALL.cmd",
+  "TEST_ALL_CAPABILITIES.cmd",
+  "TEST_ALL_CAPABILITIES.ps1",
+  "FOUNDATION_BASELINE_MANIFEST.json",
   "RUN_ME_DEPLOY_TO_GIT_AND_CLOUDFLARE.ps1",
   "RUN_ME_DEPLOY_GIT_ONLY.ps1",
   "RUN_ME_DEPLOY_GIT_AND_CLOUDFLARE_DIRECT.ps1",
-  "RUN_ME_FIRST_TIME_GIT_SETUP.cmd"
+  "RUN_ME_FIRST_TIME_GIT_SETUP.cmd",
+  "preview/TAS_v70_18_AURORA_Dashboard.png",
+  "preview/TAS_v70_18_AURORA_Evidence_Intake.png"
 )
 foreach ($requiredFile in $repoRequiredFiles) {
   if (-not (Test-Path (Join-Path $ResolvedRepo $requiredFile))) {
     Fail "The repository copy is incomplete. Missing root file: $requiredFile"
+  }
+}
+
+# Verify the deployment copy against the machine-readable Foundation Lock manifest.
+# Any future protected file added to the manifest must also survive the repository copy.
+$repoManifestPath = Join-Path $ResolvedRepo "FOUNDATION_BASELINE_MANIFEST.json"
+$repoManifest = Get-Content -Raw -Path $repoManifestPath | ConvertFrom-Json
+foreach ($protectedFile in $repoManifest.protectedFiles) {
+  $protectedPath = Join-Path $ResolvedRepo ([string]$protectedFile.path)
+  if (-not (Test-Path $protectedPath)) {
+    Fail "The repository copy is incomplete. Missing protected baseline file: $($protectedFile.path)"
   }
 }
 
@@ -256,7 +273,7 @@ $hasNoChanges = ($LASTEXITCODE -eq 0)
 if ($hasNoChanges) {
   Write-Host "No file changes were detected. The repository is already on this release." -ForegroundColor Yellow
 } else {
-  Write-Host "[7/10] Committing TAS v70.18 AURORA..." -ForegroundColor Cyan
+  Write-Host "[7/10] Committing TAS v70.18.1 Foundation Lock..." -ForegroundColor Cyan
   & git.exe commit -m $CommitMessage
   if ($LASTEXITCODE -ne 0) { Fail "git commit failed. Check the configured Git name and email." }
 
@@ -283,9 +300,9 @@ Write-Host "[10/10] RELEASE COMPLETE" -ForegroundColor Green
 Write-Host ""
 Write-Host "Git repository: $ResolvedRepo"
 if (-not $GitOnly) {
-  Write-Host "Cloudflare:     https://$PagesHost/studio?v=718"
-  Write-Host "Release marker: https://$PagesHost/DEPLOYMENT_MARKER_TAS_V70_18_AURORA_COMMAND_CENTRE.txt"
+  Write-Host "Cloudflare:     https://$PagesHost/studio?v=70181"
+  Write-Host "Release marker: https://$PagesHost/DEPLOYMENT_MARKER_TAS_V70_18_1_FOUNDATION_LOCK.txt"
 }
 Write-Host ""
-Write-Host "TAS v70.18 AURORA has passed both package and repository validation." -ForegroundColor Green
+Write-Host "TAS v70.18.1 Foundation Lock has passed both package and repository validation." -ForegroundColor Green
 Wait-ForDan

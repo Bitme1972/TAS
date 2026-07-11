@@ -1,0 +1,18 @@
+TAS v70.18.1 FOUNDATION LOCK — HOTFIX 1
+========================================
+
+Purpose
+-------
+Correct the final validation-report step on Windows with Node.js 24.
+
+Original symptom
+----------------
+Error: spawnSync npm.cmd EINVAL
+
+Correction
+----------
+The report writer no longer launches npm.cmd or any child process. It reads the npm version from the standard npm script environment instead.
+
+Protection
+----------
+No TAS application source, assurance engine, embedded data, baseline screenshot or deterministic AURORA build output was changed.

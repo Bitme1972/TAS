@@ -1,0 +1,3 @@
+TAS v70.18.1 DEPLOYMENT RUNNER HOTFIX 2
+
+The one-click release runner now copies src, public, functions, scripts and preview into the Git repository. It then reads FOUNDATION_BASELINE_MANIFEST.json and refuses to build, commit or push if any protected baseline file is missing.

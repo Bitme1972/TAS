@@ -1,0 +1,40 @@
+TAS v70.18.1 FOUNDATION LOCK — BUILD AND TEST EVIDENCE
+======================================================
+
+Validation date: 2026-07-11
+Validation mode: clean dependency install and production release build
+Node: v22.16.0
+npm: 10.9.2
+Install: npm ci --no-audit --no-fund
+Gate: npm run validate
+Result: PASS
+
+GATES PASSED
+------------
+22 inherited TAS/AURORA regression gates
+2 Foundation Lock integrity gates (baseline integrity plus repository-copy parity)
+Total: 24 gates
+
+PROTECTED BASELINE
+------------------
+13 source, assurance-engine, embedded-data and preview files matched the v70.18.0 SHA-256 baseline.
+The simulated Git repository copy preserved all 13 protected paths and hashes.
+
+DETERMINISTIC BUILD OUTPUT
+--------------------------
+PASS  dist/index.html
+      6ba90dfe50dcd9ed920ab64943c9a8373dfdbc42d64eed0b7890a9148f762b20
+PASS  dist/studio/index.html
+      6ba90dfe50dcd9ed920ab64943c9a8373dfdbc42d64eed0b7890a9148f762b20
+PASS  dist/assets/index-DE2vaOoG.js
+      cc887ecc7259e9bbad8f870006f4fc0c3f354e82eb1fdb3f077ff88a6d3a853a
+PASS  dist/assets/index-ewaeTsqZ.css
+      df51e7b1dab8225b79b91c5e354525d4f3c0cd7fa5ca6fb7bddd6b0fea077743
+
+KNOWN BASELINE OBSERVATION
+--------------------------
+Vite retains the inherited advisory for the approximately 1.29 MB minified JavaScript bundle. Sprint 0 intentionally preserves the byte-identical AURORA output. Modularisation is deferred to Sprint 1.
+
+DEPLOYMENT
+----------
+No Git commit, Git push or Cloudflare deployment was performed during Sprint 0 package preparation.

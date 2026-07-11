@@ -1,0 +1,12 @@
+TAS v70.18.1 FOUNDATION LOCK
+============================
+
+Sprint 0 release identity: reproducible AURORA baseline
+Protected application baseline: TAS v70.18.0 AURORA
+Application, engine, data and preview files: byte-identical to protected baseline
+Dependency policy: exact pinned versions with package-lock.json
+Master gate: TEST_ALL_CAPABILITIES.cmd
+Build command: npm run build
+Validation command: npm run validate
+Cloudflare output: dist
+Deployment performed during package preparation: NO

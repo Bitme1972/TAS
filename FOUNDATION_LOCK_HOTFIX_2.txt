@@ -1,0 +1,17 @@
+TAS v70.18.1 FOUNDATION LOCK - HOTFIX 2
+
+Purpose:
+Correct the one-click Git deployment copy so the protected AURORA preview baseline is preserved inside the repository.
+
+Observed failure:
+The package validation passed, but the repository validation correctly stopped because preview/TAS_v70_18_AURORA_Dashboard.png had not been copied into the Git clone.
+
+Correction:
+- Added preview to the declared deployment release-folder set.
+- Added both protected preview PNGs to the repository completeness check.
+- Added manifest-driven verification of every protected file before repository build.
+- Added a repository-copy simulation regression gate that verifies all protected files and SHA-256 hashes survive the copy.
+- No application, assurance-engine, dataset or protected preview content was changed.
+
+Deployment safety:
+The failed attempt committed and pushed nothing.

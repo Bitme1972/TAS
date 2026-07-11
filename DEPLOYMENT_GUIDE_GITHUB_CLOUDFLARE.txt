@@ -1,12 +1,12 @@
-TAS v70.18 AURORA - EXACT DEPLOYMENT GUIDE
+TAS v70.18.1 Foundation Lock - EXACT DEPLOYMENT GUIDE
 ==========================================
 
 A. PREPARE THE FOLDERS
 1. Open C:\TAS
-2. Rename any previous C:\TAS\TAS_v70_18_AURORA folder to TAS_v70_18_AURORA_OLD
+2. Rename any previous C:\TAS\TAS_v70_18_1_FOUNDATION_LOCK folder to TAS_v70_18_1_FOUNDATION_LOCK_OLD
 3. Extract the complete release ZIP directly into C:\TAS
 4. Confirm this exact file exists:
-   C:\TAS\TAS_v70_18_AURORA\RUN_THIS_NOW_DEPLOY_TAS.cmd
+   C:\TAS\TAS_v70_18_1_FOUNDATION_LOCK\RUN_THIS_NOW_DEPLOY_TAS.cmd
 5. Leave C:\TAS\tas in place. The runner recognises and updates it safely.
 
 B. CONFIRM CLOUDFLARE SETTINGS
@@ -35,17 +35,17 @@ D. VERIFY GITHUB
 1. Open GitHub repository Bitme1972/tas
 2. Refresh the Code page
 3. Confirm the newest commit says:
-   Deploy TAS v70.18 AURORA Command Centre
+   Deploy TAS v70.18.1 Foundation Lock Command Centre
 4. Open package.json and confirm:
-   name: tas-v70-18-aurora-command-centre
-   version: 70.18.0
+   name: tas-v70-18-1-foundation-lock
+   version: 70.18.1
 
 E. VERIFY CLOUDFLARE
 1. Return to Workers & Pages > tas > Deployments
 2. A new deployment from main should start automatically
 3. Wait for Status: Success
 4. Open https://tas-duo.pages.dev
-5. Open https://tas-duo.pages.dev/studio?v=718
+5. Open https://tas-duo.pages.dev/studio?v=70181
 6. Press Ctrl+F5 in Chrome
 7. Confirm the AURORA Command Centre loads
 
@@ -55,7 +55,7 @@ F. CONNECT AUDITPOL.COM
 3. Enter auditpol.com
 4. Continue and activate the domain
 5. Wait until the domain status becomes Active
-6. Test https://auditpol.com and https://auditpol.com/studio?v=718
+6. Test https://auditpol.com and https://auditpol.com/studio?v=70181
 
 IMPORTANT
 ---------
