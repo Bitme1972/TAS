@@ -1,16 +1,45 @@
 {
-  "release": "70.20.1",
-  "status": "member-foundation",
+  "release": "70.20.2",
+  "status": "commercial-gateway",
+  "publicLanding": "member-gateway",
+  "freeExperience": {
+    "route": "/demo/",
+    "engine": "synthetic-only",
+    "customerEvidenceAccepted": false
+  },
   "commercialBinariesPublished": false,
+  "protectedInstallerStaged": false,
   "downloadSlots": [
-    {"id":"professional-windows","edition":"professional","state":"entitlement-required","artifact":null},
-    {"id":"consultant-windows","edition":"consultant","state":"consultant-entitlement-required","artifact":null}
+    {
+      "id": "professional-windows-x64",
+      "edition": "professional",
+      "state": "awaiting-signed-msi",
+      "artifact": null,
+      "entitlementRequired": true
+    },
+    {
+      "id": "consultant-windows-x64",
+      "edition": "consultant",
+      "state": "awaiting-signed-msi",
+      "artifact": null,
+      "entitlementRequired": true
+    }
   ],
+  "pricing": {
+    "demo": "GBP 0",
+    "professionalLaunch": "GBP 349",
+    "professionalUpdates": "GBP 129/year after included year",
+    "consultant": "GBP 899/year"
+  },
   "publicGuides": [
     "TAS_LICENSING_AND_DOWNLOADS_README.md",
     "TAS_CUSTOMER_QUICK_START.md",
     "TAS_OFFLINE_ACTIVATION_WORKFLOW.md",
-    "TAS_SHA256_VERIFICATION_GUIDE.txt"
+    "TAS_SHA256_VERIFICATION_GUIDE.txt",
+    "TAS_MSI_PUBLISHING_GUIDE.md",
+    "TAS_DEMO_SECURITY_BOUNDARY.md",
+    "TAS_PRICE_AND_EDITION_POLICY.md",
+    "TAS_V70_20_2_PRICING_RATIONALE.md"
   ],
-  "securityNote": "No signing key, payment secret, licence secret or customer audit evidence is present in this manifest."
+  "securityNote": "No signing key, payment secret, licence secret, commercial Golden baseline or customer audit evidence is present in this manifest."
 }

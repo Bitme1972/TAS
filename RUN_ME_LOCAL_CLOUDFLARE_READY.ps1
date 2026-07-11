@@ -17,7 +17,7 @@ function Fail($Message) {
 $PackageFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 Write-Host "============================================================"
-Write-Host "TAS v70.20.1 AURORA MEMBER FOUNDATION - LOCAL PREVIEW"
+Write-Host "TAS v70.20.2 COMMERCIAL GATEWAY - LOCAL PREVIEW"
 Write-Host "============================================================"
 Write-Host "Package folder: $PackageFolder"
 Write-Host "Local port:     $Port"
@@ -27,61 +27,74 @@ Write-Host "  - no Git commit"
 Write-Host "  - no Git push"
 Write-Host "  - no Cloudflare deploy"
 Write-Host ""
-Write-Host "CLOUDFLARE READY:"
-Write-Host "  - uses the real Cloudflare/Vite package"
-Write-Host "  - runs full production build"
-Write-Host "  - runs TAS validation gates"
-Write-Host "  - serves the built dist locally"
+Write-Host "THIS VALIDATES THE REAL CUSTOMER JOURNEY:"
+Write-Host "  - Member Gateway at /"
+Write-Host "  - synthetic interactive Demo at /demo/"
+Write-Host "  - licensed purchase and activation gate at /studio/"
+Write-Host "  - Professional and Consultant remain separate protected builds"
 Write-Host ""
 
 Set-Location $PackageFolder
-
-foreach ($required in @("src", "scripts", "functions", "public", "config", "editions", "package.json", "package-lock.json", "index.html", "tsconfig.json", "wrangler.toml")) {
-  if (!(Test-Path (Join-Path $PackageFolder $required))) {
-    Fail "Missing required Cloudflare package item: $required"
-  }
+foreach ($required in @("src", "scripts", "functions", "public", "config", "editions", "release-assets", "package.json", "package-lock.json", "index.html", "tsconfig.json", "wrangler.toml", "vite.demo.config.ts")) {
+  if (!(Test-Path (Join-Path $PackageFolder $required))) { Fail "Missing required package item: $required" }
 }
 
 Write-Host "[1/5] Installing dependencies locally in this package folder..."
-if ($CleanInstall) {
-  if (Test-Path ".\node_modules") { Remove-Item ".\node_modules" -Recurse -Force }
-}
+if ($CleanInstall -and (Test-Path ".\node_modules")) { Remove-Item ".\node_modules" -Recurse -Force }
 if (Test-Path ".\dist") { Remove-Item ".\dist" -Recurse -Force }
 if (Test-Path ".\dist-editions") { Remove-Item ".\dist-editions" -Recurse -Force }
 npm.cmd ci --no-audit --no-fund --progress=false
 if ($LASTEXITCODE -ne 0) { Fail "Dependency install failed." }
 
-Write-Host "[2/5] Running production build and all TAS validation gates..."
+Write-Host "[2/5] Running the production build and every TAS validation gate..."
 npm.cmd run build
 if ($LASTEXITCODE -ne 0) { Fail "Build or validation gate failed." }
 
-Write-Host "[3/5] Checking Cloudflare build output..."
-foreach ($requiredDist in @("dist", "dist\index.html", "dist\studio\index.html", "dist\DEPLOYMENT_MARKER_TAS_V70_3_GOLDEN_COMPARE.txt", "dist\DEPLOYMENT_MARKER_TAS_V70_20_COMMUNITY.txt", "dist\DEPLOYMENT_MARKER_TAS_V70_20_1_AURORA_MEMBER_FOUNDATION.txt", "dist\member\index.html", "dist\member\license-guide.html", "dist\member-resources\TAS_LICENSING_AND_DOWNLOADS_README.md", "dist\TAS_DEPLOYED_EDITION.json", "dist-editions\community\TAS_EDITION_MANIFEST.json", "dist-editions\professional\TAS_EDITION_MANIFEST.json", "dist-editions\consultant\TAS_EDITION_MANIFEST.json")) {
-  if (!(Test-Path $requiredDist)) {
-    Fail "Missing expected Cloudflare dist output: $requiredDist"
-  }
+Write-Host "[3/5] Checking the exact public and protected outputs..."
+$requiredOutputs = @(
+  "dist\index.html",
+  "dist\demo\index.html",
+  "dist\studio\index.html",
+  "dist\member\index.html",
+  "dist\member\license-guide.html",
+  "dist\member-resources\TAS_LICENSING_AND_DOWNLOADS_README.md",
+  "dist\member-resources\TAS_DEMO_SECURITY_BOUNDARY.md",
+  "dist\member-resources\TAS_MSI_PUBLISHING_GUIDE.md",
+  "dist\TAS_INSTALLER_STATUS.json",
+  "dist\TAS_DEPLOYED_EDITION.json",
+  "dist\DEPLOYMENT_MARKER_TAS_V70_20_2_COMMERCIAL_GATEWAY.txt",
+  "dist-editions\demo\index.html",
+  "dist-editions\community\TAS_EDITION_MANIFEST.json",
+  "dist-editions\professional\TAS_EDITION_MANIFEST.json",
+  "dist-editions\consultant\TAS_EDITION_MANIFEST.json"
+)
+foreach ($requiredOutput in $requiredOutputs) {
+  if (!(Test-Path $requiredOutput)) { Fail "Missing expected output: $requiredOutput" }
 }
+if (Test-Path ".\dist\assets") { Fail "Commercial AURORA assets were exposed in the public root." }
+if (Test-Path ".\dist\member-downloads\TAS_Professional_x64.msi") { Fail "The commercial MSI was exposed publicly." }
 
-Write-Host "[4/5] Writing local validation marker..."
+Write-Host "[4/5] Writing the local validation marker..."
 $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 @"
-TAS v70.20.1 AURORA Member Foundation local preview validation passed.
+TAS v70.20.2 Commercial Gateway local preview validation passed.
 Time: $stamp
+Landing: Member Gateway
+Demo: synthetic-only interactive AURORA
+Commercial Studio: licence controlled
+Installer: protected entitlement slot
 Mode: Local only
 Git: no commit, no push
 Cloudflare: no deploy
 "@ | Set-Content ".\LOCAL_VALIDATION_PASSED.txt" -Encoding UTF8
 
-Write-Host "[5/5] Starting local preview from built dist..."
+Write-Host "[5/5] Starting the built public experience..."
 Write-Host ""
 Write-Host "Open in Chrome:"
-Write-Host "  http://localhost:$Port/?localAuroraReady=1"
-Write-Host "  http://localhost:$Port/member/"
-Write-Host ""
-Write-Host "Extra check:"
-Write-Host "  http://localhost:$Port/DEPLOYMENT_MARKER_TAS_V70_20_1_AURORA_MEMBER_FOUNDATION.txt"
+Write-Host "  Member Gateway:  http://localhost:$Port/"
+Write-Host "  Free Demo:       http://localhost:$Port/demo/"
+Write-Host "  Licensed Studio: http://localhost:$Port/studio/"
 Write-Host ""
 Write-Host "Press CTRL+C in this window to stop the local server."
 Write-Host ""
-
 npm.cmd run preview -- --host 0.0.0.0 --port $Port

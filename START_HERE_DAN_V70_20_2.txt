@@ -1,0 +1,10 @@
+TAS v70.20.2 COMMERCIAL GATEWAY
+
+1. Extract the package to C:\TAS\TAS_v70_20_2_COMMERCIAL_GATEWAY
+2. Run RUN_ME_LOCAL_CLOUDFLARE_READY.cmd
+3. Open http://localhost:8787/
+4. Member Gateway is the landing page.
+5. Free synthetic Demo is at http://localhost:8787/demo/
+6. Licensed Studio gate is at http://localhost:8787/studio/
+
+No Git push or Cloudflare deployment occurs during local preview.

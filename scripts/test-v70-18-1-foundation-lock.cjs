@@ -9,8 +9,8 @@ const pkg = readJson('package.json');
 const lock = readJson('package-lock.json');
 const manifest = readJson('FOUNDATION_BASELINE_MANIFEST.json');
 
-if (pkg.name !== 'tas-v70-20-1-aurora-member-foundation') fail(`unexpected package name ${pkg.name}`);
-if (pkg.version !== '70.20.1') fail(`unexpected package version ${pkg.version}`);
+if (pkg.name !== 'tas-v70-20-2-commercial-gateway') fail(`unexpected package name ${pkg.name}`);
+if (pkg.version !== '70.20.2') fail(`unexpected package version ${pkg.version}`);
 if (lock.name !== pkg.name || lock.version !== pkg.version) fail('package-lock root identity does not match package.json');
 if (lock.packages?.['']?.name !== pkg.name || lock.packages?.['']?.version !== pkg.version) fail('package-lock package identity does not match package.json');
 
@@ -51,4 +51,4 @@ if (/child_process|spawnSync|execFileSync|npm\.cmd/.test(validationWriter)) {
   fail('validation report writer must remain subprocess-free for Windows Node 24 portability');
 }
 
-console.log(`TAS v70.20 inherited Foundation Lock gate passed: ${manifest.protectedFiles.length} protected files and ${expectedLines.length} deterministic v70.20.1 build outputs verified.`);
+console.log(`TAS v70.20 inherited Foundation Lock gate passed: ${manifest.protectedFiles.length} protected files and ${expectedLines.length} deterministic protected AURORA build outputs verified.`);

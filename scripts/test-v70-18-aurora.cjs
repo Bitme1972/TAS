@@ -31,5 +31,5 @@ if (missing.length) {
   console.error('TAS v70.18 AURORA innovation gate failed. Missing:', missing);
   process.exit(1);
 }
-if (pkg.version !== '70.20.1') throw new Error(`Expected AURORA member-foundation package version 70.20.1, found ${pkg.version}`);
-console.log('TAS v70.18 AURORA command-centre innovation gate passed unchanged inside v70.20 Community.');
+if (pkg.version !== '70.20.2') throw new Error(`Expected Commercial Gateway package version 70.20.2, found ${pkg.version}`);
+console.log('TAS v70.18 AURORA command-centre innovation gate passed unchanged inside v70.20.2 Commercial Gateway.');

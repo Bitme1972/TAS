@@ -1,0 +1,6 @@
+TAS v70.20.2 Commercial Gateway
+Member Gateway at /
+Synthetic AURORA Interactive Demo at /demo/
+Licensed commercial gate at /studio/
+Professional and Consultant builds remain protected and separate
+No public MSI or commercial Golden baseline

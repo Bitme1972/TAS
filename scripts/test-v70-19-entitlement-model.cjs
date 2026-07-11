@@ -2,7 +2,7 @@ const fs = require('fs');
 const fail = message => { console.error(`TAS v70.20 entitlement gate failed: ${message}`); process.exit(1); };
 const config = JSON.parse(fs.readFileSync('config/edition-entitlements.json', 'utf8'));
 if (config.schemaVersion !== 1) fail('unexpected entitlement schema version');
-if (config.release !== '70.20.1') fail(`unexpected entitlement release ${config.release}`);
+if (config.release !== '70.20.2') fail(`unexpected entitlement release ${config.release}`);
 const editions = config.editions || {};
 for (const id of ['community', 'professional', 'consultant']) {
   if (!editions[id] || editions[id].id !== id) fail(`missing or mismatched edition ${id}`);

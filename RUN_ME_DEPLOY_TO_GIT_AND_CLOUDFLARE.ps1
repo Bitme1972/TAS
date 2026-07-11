@@ -4,7 +4,7 @@ param(
   [string]$ProjectName = "tas",
   [string]$PagesHost = "tas-duo.pages.dev",
   [string]$Branch = "main",
-  [string]$CommitMessage = "Deploy TAS v70.20 Community",
+  [string]$CommitMessage = "Deploy TAS v70.20.2 Commercial Gateway",
   [switch]$DirectCloudflare,
   [switch]$GitOnly
 )
@@ -101,7 +101,7 @@ $RepoSearchRoot = $PackageParent
 if (Test-Path "C:\TAS") { $RepoSearchRoot = "C:\TAS" }
 
 Write-Host "============================================================"
-Write-Host "TAS v70.20 COMMUNITY ONE-CLICK RELEASE"
+Write-Host "TAS v70.20.2 COMMERCIAL GATEWAY ONE-CLICK RELEASE"
 Write-Host "============================================================"
 Write-Host "Package folder:  $PackageFolder"
 Write-Host "Repository URL:  $RepoUrl"
@@ -132,9 +132,9 @@ foreach ($required in @("src", "public", "functions", "scripts", "preview", "con
 Write-Host "[1/10] Validating the protected AURORA core and all independent editions..." -ForegroundColor Cyan
 Set-Location $PackageFolder
 & npm.cmd ci --no-audit --no-fund --progress=false
-if ($LASTEXITCODE -ne 0) { Fail "npm ci failed in the Sprint 2 package." }
+if ($LASTEXITCODE -ne 0) { Fail "npm ci failed in the v70.20.2 package." }
 & npm.cmd run build
-if ($LASTEXITCODE -ne 0) { Fail "The Sprint 2 package build or regression tests failed." }
+if ($LASTEXITCODE -ne 0) { Fail "The v70.20.2 package build or regression tests failed." }
 
 Write-Host "[2/10] Locating the correct Git repository..." -ForegroundColor Cyan
 $ResolvedRepo = Resolve-Repo $TargetRepo $RepoSearchRoot $RepoUrl
@@ -165,7 +165,7 @@ Write-Host "[3/10] Protecting any local repo changes and updating $Branch..." -F
 $dirtyState = @(& git.exe -C $ResolvedRepo status --porcelain)
 if ($LASTEXITCODE -ne 0) { Fail "Unable to read Git status in $ResolvedRepo" }
 if ($dirtyState.Count -gt 0) {
-  $backupLabel = "TAS v70.20 automatic backup " + (Get-Date -Format "yyyy-MM-dd_HH-mm-ss")
+  $backupLabel = "TAS v70.20.2 automatic backup " + (Get-Date -Format "yyyy-MM-dd_HH-mm-ss")
   Write-Host "Existing local repo changes detected. Saving them safely in Git stash..." -ForegroundColor Yellow
   & git.exe -C $ResolvedRepo stash push --include-untracked -m $backupLabel
   if ($LASTEXITCODE -ne 0) { Fail "Could not protect the existing local repo changes with Git stash." }
@@ -194,12 +194,12 @@ if ($remoteBranchExists) {
 $packageResolved = (Resolve-Path $PackageFolder).Path.TrimEnd('\')
 $repoResolved = (Resolve-Path $ResolvedRepo).Path.TrimEnd('\')
 if ($packageResolved -ieq $repoResolved) {
-  Fail "The source package folder and Git repository folder must be separate. Keep the package at C:\TAS\TAS_v70_20_COMMUNITY and the repository at C:\TAS\tas."
+  Fail "The source package folder and Git repository folder must be separate. Keep the package at C:\TAS\TAS_v70_20_2_COMMERCIAL_GATEWAY and the repository at C:\TAS\tas."
 }
 
 Write-Host "[4/10] Cleaning the repository and installing the TAS-only application..." -ForegroundColor Cyan
 Get-ChildItem -Force -Path $ResolvedRepo | Where-Object { $_.Name -ne ".git" } | Remove-Item -Recurse -Force
-$releaseFolders = @("src", "public", "functions", "scripts", "preview", "config", "editions")
+$releaseFolders = @("src", "public", "functions", "scripts", "preview", "config", "editions", "release-assets")
 foreach ($folder in $releaseFolders) {
   $destination = Join-Path $ResolvedRepo $folder
   Remove-Item $destination -Recurse -Force -ErrorAction SilentlyContinue
@@ -242,6 +242,8 @@ $repoRequiredFiles = @(
   "editions/community/index.html",
   "editions/professional/index.html",
   "editions/consultant/index.html",
+  "editions/demo/index.html",
+  "vite.demo.config.ts",
   "preview/TAS_v70_18_AURORA_Dashboard.png",
   "preview/TAS_v70_18_AURORA_Evidence_Intake.png"
 )
@@ -284,7 +286,7 @@ $hasNoChanges = ($LASTEXITCODE -eq 0)
 if ($hasNoChanges) {
   Write-Host "No file changes were detected. The repository is already on this release." -ForegroundColor Yellow
 } else {
-  Write-Host "[7/10] Committing TAS v70.20 Community..." -ForegroundColor Cyan
+  Write-Host "[7/10] Committing TAS v70.20.2 Commercial Gateway..." -ForegroundColor Cyan
   & git.exe commit -m $CommitMessage
   if ($LASTEXITCODE -ne 0) { Fail "git commit failed. Check the configured Git name and email." }
 
@@ -311,9 +313,9 @@ Write-Host "[10/10] RELEASE COMPLETE" -ForegroundColor Green
 Write-Host ""
 Write-Host "Git repository: $ResolvedRepo"
 if (-not $GitOnly) {
-  Write-Host "Cloudflare:     https://$PagesHost/studio?v=70200"
-  Write-Host "Release marker: https://$PagesHost/DEPLOYMENT_MARKER_TAS_V70_20_COMMUNITY.txt"
+  Write-Host "Cloudflare:     https://$PagesHost/"
+  Write-Host "Release marker: https://$PagesHost/DEPLOYMENT_MARKER_TAS_V70_20_2_COMMERCIAL_GATEWAY.txt"
 }
 Write-Host ""
-Write-Host "TAS v70.20 Community has passed package, repository and independent-edition validation." -ForegroundColor Green
+Write-Host "TAS v70.20.2 Commercial Gateway has passed public-boundary, Demo and independent-edition validation." -ForegroundColor Green
 Wait-ForDan

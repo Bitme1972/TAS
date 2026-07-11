@@ -1,8 +1,8 @@
 {
-  "name": "tas-v70-20-1-aurora-member-foundation",
-  "version": "70.20.1",
+  "name": "tas-v70-20-2-commercial-gateway",
+  "version": "70.20.2",
   "private": true,
-  "description": "Telemetry Assurance Studio v70.20.1 AURORA Member Foundation \u2014 protected command centre with edition and paid-member workspace",
+  "description": "Telemetry Assurance Studio v70.20.2 Commercial Gateway \u2014 AURORA member landing, synthetic interactive demo and protected licensed delivery boundary",
   "engines": {
     "node": ">=22 <25",
     "npm": ">=10 <12"
@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "build:app": "vite build",
     "prepare:cloudflare-dist": "node scripts/prepare-cloudflare-dist.cjs",
-    "build:cloudflare": "npm run clean && npm run typecheck && npm run build:app && npm run prepare:cloudflare-dist",
+    "build:cloudflare": "npm run validate",
     "preview": "vite preview --host 0.0.0.0",
     "test:parity": "node scripts/test-desktop-parity.cjs",
     "test:v70": "node scripts/test-v70-cloudflare.cjs",
@@ -38,8 +38,8 @@
     "test:deploy-runner": "node scripts/test-v70-18-deploy-runner.cjs",
     "test:project-separation": "node scripts/test-tas-project-separation.cjs",
     "test:foundation-lock": "node scripts/test-v70-18-1-foundation-lock.cjs",
-    "test:regression": "npm run test:inherited && npm run build:editions && npm run test:sprint1 && npm run test:sprint2 && npm run test:member-foundation && npm run test:browser-contract",
-    "validate": "npm run build:cloudflare && npm run test:inherited && npm run build:editions && npm run test:sprint1 && npm run test:sprint2 && npm run test:member-foundation && npm run test:browser-contract && npm run write:validation-report && npm run write:member-validation && npm run prepare:cloudflare-dist",
+    "test:regression": "npm run test:inherited && npm run build:editions && npm run build:demo && npm run test:sprint1 && npm run test:sprint2 && npm run test:commercial-gateway && npm run test:demo-boundary",
+    "validate": "npm run build:commercial && npm run test:inherited && npm run build:editions && npm run build:demo && npm run test:sprint1 && npm run test:sprint2 && npm run test:commercial-gateway && npm run test:demo-boundary && npm run write:validation-report && npm run write:member-validation && npm run write:gateway-validation && npm run prepare:cloudflare-dist && npm run test:public-dist",
     "build": "npm run validate",
     "write:validation-report": "node scripts/write-validation-report.cjs",
     "test:repository-copy": "node scripts/test-v70-18-1-repository-copy.cjs",
@@ -59,7 +59,14 @@
     "test:sprint2": "npm run test:community-engine && npm run test:community-report && npm run test:community-product",
     "test:member-foundation": "node scripts/test-v70-20-1-member-foundation.cjs",
     "test:browser-contract": "node scripts/test-v70-20-1-browser-contract.cjs",
-    "write:member-validation": "node scripts/write-v70-20-1-validation-report.cjs"
+    "write:member-validation": "node scripts/write-v70-20-1-validation-report.cjs",
+    "prepare:commercial-dist": "node scripts/prepare-commercial-dist.cjs",
+    "build:commercial": "npm run clean && npm run typecheck && npm run build:app && npm run prepare:commercial-dist",
+    "build:demo": "vite build --config vite.demo.config.ts",
+    "test:commercial-gateway": "node scripts/test-v70-20-2-commercial-gateway.cjs",
+    "test:demo-boundary": "node scripts/test-v70-20-2-demo-boundary.cjs",
+    "test:public-dist": "node scripts/test-v70-20-2-public-dist.cjs",
+    "write:gateway-validation": "node scripts/write-v70-20-2-validation-report.cjs"
   },
   "dependencies": {
     "lucide-react": "1.23.0",

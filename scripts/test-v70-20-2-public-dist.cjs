@@ -1,0 +1,16 @@
+const fs = require('fs');
+const path = require('path');
+const fail = m => { console.error(`TAS v70.20.2 public-dist gate failed: ${m}`); process.exit(1); };
+for (const f of ['dist/index.html','dist/demo/index.html','dist/studio/index.html','dist/member/index.html','dist/TAS_INSTALLER_STATUS.json','dist/TAS_DEPLOYED_EDITION.json']) if (!fs.existsSync(f)) fail(`missing ${f}`);
+const root = fs.readFileSync('dist/index.html','utf8');
+if (!root.includes('Choose your TAS experience.') || !root.includes('/demo/')) fail('Member Gateway is not the landing page');
+const deployed = JSON.parse(fs.readFileSync('dist/TAS_DEPLOYED_EDITION.json','utf8'));
+if (deployed.publicCommercialEngineIncluded !== false) fail('public deployment claims commercial engine inclusion');
+const installer = JSON.parse(fs.readFileSync('dist/TAS_INSTALLER_STATUS.json','utf8'));
+if (installer.publicDownloadPublished !== false) fail('MSI is incorrectly public');
+if (fs.existsSync('dist/assets')) fail('commercial AURORA assets leaked into public root');
+let publicText='';
+(function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())walk(p);else if(/\.(js|css|html|json|txt)$/i.test(e.name))publicText+=fs.readFileSync(p,'utf8');}})('dist');
+for (const forbidden of ['BA-001','AC-001','EGoP_10_DCs_multi_auditpol']) if (publicText.includes(forbidden)) fail(`public dist leaked commercial sentinel ${forbidden}`);
+if (fs.existsSync('dist/member-downloads/TAS_Professional_x64.msi')) fail('public MSI exposed');
+console.log('TAS v70.20.2 public-dist gate passed: Member Gateway root, synthetic Demo, licence gate and no public commercial engine/MSI.');

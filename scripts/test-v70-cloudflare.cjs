@@ -12,7 +12,7 @@ const checks = [
   ['matrix parser embedded', engine.includes('tryParseAuditpolMatrix') && engine.includes('parseDelimitedMatrix')],
   ['partial input scoring block', engine.includes('BLOCKING PARTIAL_AUDITPOL_INPUT') && engine.includes('scoringBlocked')],
   ['Cloudflare output dir', wrangler.includes('pages_build_output_dir = "dist"')],
-  ['v70 package name', pkg.name === 'tas-v70-20-1-aurora-member-foundation']
+  ['v70 package name', pkg.name === 'tas-v70-20-2-commercial-gateway']
 ];
 const failed = checks.filter(([, ok]) => !ok);
 if (failed.length) {

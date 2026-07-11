@@ -37,5 +37,5 @@ if (Test-Path $ZipPath) { Remove-Item $ZipPath -Force }
 Write-Host "[4/4] Compressing $ZipPath..." -ForegroundColor Cyan
 Compress-Archive -Path $StagePackage -DestinationPath $ZipPath -CompressionLevel Optimal
 Remove-Item $StageRoot -Recurse -Force
-Write-Host "[PASS] Clean TAS v70.20 Community package created:" -ForegroundColor Green
+Write-Host "[PASS] Clean TAS v70.20.2 Commercial Gateway package created:" -ForegroundColor Green
 Write-Host $ZipPath

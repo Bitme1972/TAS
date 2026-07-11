@@ -1,0 +1,8 @@
+TAS v70.20.2 Commercial Gateway
+Package: tas-v70-20-2-commercial-gateway
+Version: 70.20.2
+Public root: Member Gateway
+Free route: /demo/ synthetic AURORA Demo
+Licensed route: /studio/ gate only
+Professional/Consultant: independent protected builds
+MSI: not supplied; no fake binary created
