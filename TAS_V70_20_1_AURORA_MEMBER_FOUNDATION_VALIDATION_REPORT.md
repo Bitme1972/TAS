@@ -4,9 +4,9 @@
 
 **PASS — AURORA continuity and member-foundation gate completed.**
 
-- Package: `tas-v70-20-2-commercial-gateway`
-- Version: `70.20.2`
-- Generated: `2026-07-11T18:40:53.280Z`
+- Package: `tas-v70-20-3-commercial-delivery-studio`
+- Version: `70.20.3`
+- Generated: `2026-07-11T20:30:28.799Z`
 - Default application: protected AURORA Professional command centre
 - Member hub: `/member/`
 - Deployment performed: **No**
@@ -37,5 +37,5 @@ All 13 Foundation Lock files remain byte-identical, including `src/App.tsx`, `sr
 ## Built output hashes
 
 - `dist/index.html`: `1b1dbb738bb8237a30e453cd65899d1301b2c909dc59f539dcd361b2dbdfff4e`
-- `dist/member/index.html`: `1d3cda5b9dd41855cd9cc9a01a49b5f6c3db519eb209809ce29d4eafd8b723c3`
+- `dist/member/index.html`: `a3f900ffa8ea7a08f60040ee51fe581924c40489b6467c3fe5d1a40d6c573071`
 - `dist/tas-member-extension.js`: `a4468d7d8c62d3ddb6d5ead24159e029537ee419364899f314fe632be71b4cd4`

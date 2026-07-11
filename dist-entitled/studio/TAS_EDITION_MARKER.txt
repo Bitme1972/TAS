@@ -1,0 +1,5 @@
+Telemetry Assurance Studio
+Release: 70.20.3
+Edition: TAS Professional
+Build boundary: professional
+Generated from the Sprint 1 commercial entitlement architecture.

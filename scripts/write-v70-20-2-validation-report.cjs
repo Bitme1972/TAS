@@ -1,5 +1,5 @@
 const fs=require('fs');
-const text=`# TAS v70.20.2 Commercial Gateway Validation Report
+const text=`# TAS v70.20.3 Commercial Gateway Validation Report
 
 ## Product direction
 
@@ -24,5 +24,5 @@ No TAS MSI was present in the supplied attachment. A realistic signed-MSI vault 
 
 The public output contains the Member Gateway, synthetic Demo and licence gateway only. Commercial baseline identifiers, premium datasets, Professional assets and installer binaries are excluded from public dist.
 `;
-fs.writeFileSync('TAS_V70_20_2_COMMERCIAL_GATEWAY_VALIDATION_REPORT.md',text);
-console.log('Wrote TAS_V70_20_2_COMMERCIAL_GATEWAY_VALIDATION_REPORT.md');
+fs.writeFileSync('TAS_V70_20_3_COMMERCIAL_GATEWAY_VALIDATION_REPORT.md',text);
+console.log('Wrote TAS_V70_20_3_COMMERCIAL_GATEWAY_VALIDATION_REPORT.md');

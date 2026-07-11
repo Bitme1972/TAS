@@ -1,0 +1,3 @@
+TAS v70.20.3 COMMERCIAL DELIVERY STUDIO
+Member Gateway + separate synthetic Demo + verified TAS v10.0.6 x64 MSI staging + licence-aware entitled vault + scripted guided tour + desktop interaction parity.
+Public Cloudflare output excludes the MSI and commercial engine.

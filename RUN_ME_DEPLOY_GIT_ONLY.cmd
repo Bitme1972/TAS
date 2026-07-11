@@ -1,6 +1,6 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-title TAS v70.20.2 COMMERCIAL GATEWAY
+title TAS v70.20.3 COMMERCIAL DELIVERY STUDIO
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0RUN_ME_DEPLOY_GIT_ONLY.ps1"
 endlocal

@@ -1,0 +1,23 @@
+TAS v70.20.3 COMMERCIAL DELIVERY STUDIO
+
+PUBLIC CUSTOMER JOURNEY
+1. Extract the ZIP.
+2. Run RUN_ME_LOCAL_CLOUDFLARE_READY.cmd.
+3. Open http://localhost:8787/ for the Member Gateway.
+4. Open http://localhost:8787/demo/ for the synthetic interactive Demo.
+5. Open http://localhost:8787/member/downloads.html to watch the guided tour and inspect licensing guidance.
+
+ENTITLED LOCAL FULFILMENT PREVIEW
+1. Stop the public preview with CTRL+C.
+2. Run RUN_ME_LOCAL_ENTITLED_VAULT.cmd.
+3. Open http://localhost:8788/member/downloads.html for the MSI vault.
+4. Open http://localhost:8788/studio/ for Professional.
+5. Open http://localhost:8788/consultant-studio/ for Consultant.
+
+IMPORTANT
+- dist/ is the public output and contains no MSI or commercial AURORA engine.
+- dist-entitled/ contains the real MSI and commercial Studio builds. It must never be hosted publicly without server-side account and entitlement enforcement.
+- The browser licence-file reader demonstrates visible edition metadata only. The installed desktop app remains responsible for cryptographic signature and machine-binding validation.
+- No Git push or Cloudflare deployment occurs during either local runner.
+DEPLOYMENT HOTFIX 3
+The Git deployment copy now includes the complete demo-automation folder and verifies it before rebuilding or committing.

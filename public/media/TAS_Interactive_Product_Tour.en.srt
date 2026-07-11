@@ -1,0 +1,91 @@
+1
+00:00:00,000 --> 00:00:02,700
+Start at the TAS Member Gateway: compare editions, watch the tour or enter the free synthetic Demo.
+
+2
+00:00:02,700 --> 00:00:05,400
+The free Demo is interactive and report-capable, while Professional and Consultant remain protected commercial editions.
+
+3
+00:00:05,400 --> 00:00:08,100
+Open the Demo. It uses fixed synthetic evidence and never reveals the commercial Golden baseline.
+
+4
+00:00:08,100 --> 00:00:10,800
+The familiar AURORA command centre is retained: workflow, posture, evidence and outputs remain in one workspace.
+
+5
+00:00:10,800 --> 00:00:13,500
+Evidence Intake already contains a fixed two-asset synthetic auditpol pack.
+
+6
+00:00:13,500 --> 00:00:16,500
+Generate Advanced Plus assurance. The Demo runs the full interaction and reporting path against synthetic controls.
+
+7
+00:00:16,500 --> 00:00:19,200
+The Premium Golden matrix compares assets left-to-right and supports its own scrolling pane.
+
+8
+00:00:19,200 --> 00:00:22,200
+Select a Golden result row. The matching finding is resolved and the lower detail pane updates automatically.
+
+9
+00:00:22,200 --> 00:00:24,900
+Use the draggable splitter to give more space to either the matrix or the selected-finding details.
+
+10
+00:00:24,900 --> 00:00:27,600
+Switch to the raw assurance grid and select any result row.
+
+11
+00:00:27,600 --> 00:00:30,600
+The lower pane self-populates with status, expected and actual settings, Event IDs, frameworks and remediation.
+
+12
+00:00:30,600 --> 00:00:33,300
+The top results grid and lower details pane scroll independently, preserving context during investigation.
+
+13
+00:00:33,300 --> 00:00:36,000
+Open the HTML report preview without leaving the assurance workspace.
+
+14
+00:00:36,000 --> 00:00:38,700
+Add the detailed evidence report to the browser-local output vault.
+
+15
+00:00:38,700 --> 00:00:41,200
+The output vault records the generated artefact and offers a direct local download.
+
+16
+00:00:41,200 --> 00:00:44,200
+Before / After compares fixed current and remediated evidence and highlights improved, regressed and unchanged controls.
+
+17
+00:00:44,200 --> 00:00:47,200
+The Baseline Library demonstrates searchable control intelligence and Golden comparison structure using synthetic data only.
+
+18
+00:00:47,200 --> 00:00:49,900
+Event ID Intelligence provides sortable analyst context, collection sources and triage guidance.
+
+19
+00:00:49,900 --> 00:00:52,600
+Select an event to populate its analyst detail pane.
+
+20
+00:00:52,600 --> 00:00:55,600
+Return to the Member Gateway to review licensing, verified hashes and the protected installer journey.
+
+21
+00:00:55,600 --> 00:00:58,600
+The real x64 TAS v10.0.6 MSI is staged and hash-verified, but the public site never exposes it directly.
+
+22
+00:00:58,600 --> 00:01:01,800
+A valid Professional or Consultant entitlement unlocks the protected download; the installed app then validates the signed licence and machine binding.
+
+23
+00:01:01,800 --> 00:01:05,100
+TAS turns raw Windows audit evidence into defensible security assurance—free to explore, licensed for real customer evidence.

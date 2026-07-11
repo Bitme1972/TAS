@@ -4,9 +4,9 @@
 
 **PASS — Sprint 2 Community Edition gate completed successfully.**
 
-- Package: `tas-v70-20-2-commercial-gateway`
-- Version: `70.20.2`
-- Validated: `2026-07-11T18:40:52.452Z`
+- Package: `tas-v70-20-3-commercial-delivery-studio`
+- Version: `70.20.3`
+- Validated: `2026-07-11T20:30:27.830Z`
 - Node: `v24.18.0`
 - npm: `11.16.0`
 - Default Cloudflare output: protected Professional/AURORA `dist`
@@ -23,9 +23,9 @@
 
 | Edition | Build files | Build bytes | Manifest SHA-256 |
 |---|---:|---:|---|
-| TAS Community | 3 | 239,943 | ba21b645933f0c925a11f34a033d136e8eba28e777802a476fd1adbd496d81c2 |
-| TAS Professional | 3 | 1,380,777 | e2ac3b05f2c861f951283f29180b574e659cbcf6b92dcf8899edff224dfa80ca |
-| TAS Consultant | 3 | 1,380,771 | 34a37589cb543161a4370a8d57c87aebf620db737633905208bec9a9ea2f1017 |
+| TAS Community | 3 | 239,943 | c8c22a2d0b49a1b3ade6fad689cd846fbd7c9c014b326f39b5b86b2819f4d373 |
+| TAS Professional | 3 | 1,380,831 | fd2fdb098517673b517b4dad41d840e679d75908105b4c9824c6bb060782ce4a |
+| TAS Consultant | 3 | 1,380,825 | 95db5d3e92e5dd2451f732c079c3e913a1d552453a1ac17bf6d1f1a9aa6dec2d |
 
 The Community build is 239,943 bytes including its manifest evidence. It remains independently compiled and does not import the protected Professional application, premium baseline packs or complete Event ID database.
 

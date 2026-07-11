@@ -1,0 +1,9 @@
+{
+  "release": "70.20.3",
+  "publicLanding": "member-gateway",
+  "freeExperience": "/demo/",
+  "licensedProfessionalStudio": "/studio/",
+  "licensedConsultantStudio": "/consultant-studio/",
+  "entitledInstallerPath": "/entitled-downloads/TAS_Professional_v10_0_6_x64.msi",
+  "publicCommercialEngineIncluded": false
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "release": "70.20.3",
+  "edition": "professional",
+  "generatedAtUtc": "2026-07-11T20:30:14.176Z",
+  "definition": {
+    "id": "professional",
+    "displayName": "TAS Professional",
+    "productName": "Telemetry Assurance Studio Professional",
+    "purpose": "The complete standalone assurance product for security engineers.",
+    "capabilities": {
+      "singleEvidenceIntake": true,
+      "multiEvidenceIntake": true,
+      "basicAssurance": true,
+      "advancedAssurance": true,
+      "goldenComparison": true,
+      "customGoldenBaseline": true,
+      "beforeAfterComparison": true,
+      "fullReportExports": true,
+      "eventIntelligence": true,
+      "commercialClientUse": false,
+      "customBranding": false,
+      "annualUpdates": true,
+      "priorityUpdates": false,
+      "watermarkedHtmlReport": false,
+      "evidenceReceipt": true,
+      "limitedEventIntelligence": false,
+      "professionalUpgradePreview": false
+    },
+    "limits": {
+      "maxEvidenceFilesPerAssessment": "unlimited",
+      "maxAssetsPerAssessment": "unlimited",
+      "frameworkDepth": "full",
+      "reportWatermark": false
+    }
+  },
+  "buildFiles": [
+    {
+      "path": "assets/index-CihWFDZD.js",
+      "bytes": 1294770,
+      "sha256": "d6d183452f681c6bf3106736f9f78850e6a7fa4dd55ced1fdf9fe69be9a00946"
+    },
+    {
+      "path": "assets/index-ewaeTsqZ.css",
+      "bytes": 85571,
+      "sha256": "df51e7b1dab8225b79b91c5e354525d4f3c0cd7fa5ca6fb7bddd6b0fea077743"
+    },
+    {
+      "path": "index.html",
+      "bytes": 490,
+      "sha256": "41cd2dee09f25e85a49f97515983de57ae6229b38a03ae24c70ec25dbeaed210"
+    }
+  ]
+}

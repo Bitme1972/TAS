@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const path = require('path');
 const fail = message => { console.error(`TAS v70.20.1 member-foundation gate failed: ${message}`); process.exit(1); };
 const pkg = JSON.parse(fs.readFileSync('package.json','utf8'));
-if (pkg.name !== 'tas-v70-20-2-commercial-gateway' || pkg.version !== '70.20.2') fail('package identity mismatch');
+if (pkg.name !== 'tas-v70-20-3-commercial-delivery-studio' || pkg.version !== '70.20.3') fail('package identity mismatch');
 const foundation = JSON.parse(fs.readFileSync('FOUNDATION_BASELINE_MANIFEST.json','utf8'));
 for (const item of foundation.protectedFiles) {
   if (!fs.existsSync(item.path)) fail(`missing protected file ${item.path}`);

@@ -3,7 +3,7 @@ param(
   [string]$RepoUrl = "https://github.com/Bitme1972/tas.git",
   [string]$ProjectName = "tas",
   [string]$Branch = "main",
-  [string]$CommitMessage = "Deploy TAS v70.20.2 Commercial Gateway"
+  [string]$CommitMessage = "Deploy TAS v70.20.3 Commercial Delivery Studio"
 )
 
 & "$PSScriptRoot\RUN_ME_DEPLOY_TO_GIT_AND_CLOUDFLARE.ps1" `

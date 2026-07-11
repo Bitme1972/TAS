@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "release": "70.20.3",
+  "edition": "consultant",
+  "generatedAtUtc": "2026-07-11T20:30:15.820Z",
+  "definition": {
+    "id": "consultant",
+    "displayName": "TAS Consultant",
+    "productName": "Telemetry Assurance Studio Consultant",
+    "purpose": "The commercial client-assessment edition for independent consultants.",
+    "capabilities": {
+      "singleEvidenceIntake": true,
+      "multiEvidenceIntake": true,
+      "basicAssurance": true,
+      "advancedAssurance": true,
+      "goldenComparison": true,
+      "customGoldenBaseline": true,
+      "beforeAfterComparison": true,
+      "fullReportExports": true,
+      "eventIntelligence": true,
+      "commercialClientUse": true,
+      "customBranding": true,
+      "annualUpdates": true,
+      "priorityUpdates": true,
+      "watermarkedHtmlReport": false,
+      "evidenceReceipt": true,
+      "limitedEventIntelligence": false,
+      "professionalUpgradePreview": false
+    },
+    "limits": {
+      "maxEvidenceFilesPerAssessment": "unlimited",
+      "maxAssetsPerAssessment": "unlimited",
+      "frameworkDepth": "full",
+      "reportWatermark": false
+    }
+  },
+  "buildFiles": [
+    {
+      "path": "assets/index-D6riz9W5.js",
+      "bytes": 1294768,
+      "sha256": "781c481f9ac478cb445116c7534f765f1412ea9f9d157500dae26fc15f4f16a0"
+    },
+    {
+      "path": "assets/index-ewaeTsqZ.css",
+      "bytes": 85571,
+      "sha256": "df51e7b1dab8225b79b91c5e354525d4f3c0cd7fa5ca6fb7bddd6b0fea077743"
+    },
+    {
+      "path": "index.html",
+      "bytes": 486,
+      "sha256": "cc2d5290eba712256a6e1caed498a350216afb8a837fdbf69ef7ce884dcdecd3"
+    }
+  ]
+}

@@ -56,4 +56,4 @@ for (const required of ['member/index.html','member/license-guide.html','member-
   const target = path.join(dist, required);
   if (!fs.existsSync(target)) { console.error(`Missing member-foundation output: ${required}`); process.exit(1); }
 }
-console.log('Prepared Cloudflare dist with protected AURORA root, /studio, AURORA-aligned /member hub and v70.20.2 inherited validation evidence.');
+console.log('Prepared Cloudflare dist with protected AURORA root, /studio, AURORA-aligned /member hub and v70.20.3 inherited validation evidence.');

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const fail = m => { console.error(`TAS v70.20.2 demo-boundary gate failed: ${m}`); process.exit(1); };
+const fail = m => { console.error(`TAS v70.20.3 demo-boundary gate failed: ${m}`); process.exit(1); };
 const source = fs.readFileSync('src/demo/demoEngine.ts','utf8');
 for (const forbidden of ['baseline_basic_audit.json','baseline_advanced_audit.json','event_id_lookup.json','EGoP_10_DCs_multi_auditpol','EGoP_matrix_category_subcategory_3_DCs']) if (source.includes(forbidden)) fail(`Demo source imports commercial dataset ${forbidden}`);
 for (const required of ['DEMO-001','DEMO-A04','synthetic controls and evidence','TAS Interactive Demo Evidence Pack']) if (!source.includes(required)) fail(`Demo source missing ${required}`);
@@ -12,4 +12,4 @@ for (const forbidden of ['BA-001','AC-001','EGoP_10_DCs_multi_auditpol','commerc
 const demoBytes = fs.readdirSync('dist-editions/demo/assets').reduce((n,f)=>n+fs.statSync(path.join('dist-editions/demo/assets',f)).size,0);
 const professionalBytes = fs.readdirSync('dist-editions/professional/assets').reduce((n,f)=>n+fs.statSync(path.join('dist-editions/professional/assets',f)).size,0);
 if (demoBytes >= professionalBytes) fail(`Demo bundle is not smaller than Professional (${demoBytes} vs ${professionalBytes})`);
-console.log(`TAS v70.20.2 demo-boundary gate passed: synthetic Demo ${demoBytes} bytes; Professional ${professionalBytes} bytes; commercial dataset sentinels absent.`);
+console.log(`TAS v70.20.3 demo-boundary gate passed: synthetic Demo ${demoBytes} bytes; Professional ${professionalBytes} bytes; commercial dataset sentinels absent.`);

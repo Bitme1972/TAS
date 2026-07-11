@@ -1,0 +1,17 @@
+{
+  "release": "70.20.3",
+  "publicDownloadPublished": true,
+  "protectedInstallerStaged": true,
+  "entitlementPreview": true,
+  "commercialStudioPublished": true,
+  "consultantStudioPublished": true,
+  "artifact": {
+    "fileName": "TAS_Professional_v10_0_6_x64.msi",
+    "bytes": 57430016,
+    "sha256": "f59a8682e78b94eff561b44db66fc61089c8f5156f82f5d0a7bf54099b5da249",
+    "sha512": "a486967f8e3a5ba0787e3c87a1c613ba8db457b28f96df5c88eef7ee42bc6a950d554229b60b9a3cfd058106a4ac1c1668deb25083ec468a69757347829b8a3f",
+    "productVersion": "10.0.6",
+    "architecture": "x64"
+  },
+  "securityBoundary": "This entitled-vault output demonstrates the authenticated member delivery boundary. Production hosting must enforce server-side account and entitlement checks before returning the MSI or commercial studio."
+}

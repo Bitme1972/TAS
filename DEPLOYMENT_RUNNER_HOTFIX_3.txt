@@ -1,0 +1,15 @@
+TAS v70.20.3 DEPLOYMENT RUNNER HOTFIX 3
+
+Problem corrected
+-----------------
+The release package contained demo-automation/record_tas_demo.py and its companion files, but the Git deployment copy list omitted the demo-automation folder. The package validated successfully in its own directory, then the repository rebuild failed at the commercial-delivery gate because the recording script was absent.
+
+Fix
+---
+- Added demo-automation to the repository deployment copy list.
+- Added preflight checks for record_tas_demo.py, RECORD_TAS_DEMO.cmd, requirements.txt and README.md before any repository build or commit.
+- Corrected deployment labels and release-marker wording to Commercial Delivery Studio.
+
+Safety
+------
+The failed deployment did not commit, push or deploy anything. Existing repository changes were saved in Git stash by the runner.

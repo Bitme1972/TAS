@@ -50,7 +50,7 @@ if ($LASTEXITCODE -ne 0) { Fail "Build or validation failed." }
 Write-Host "[4/4] Recording the local pass marker..." -ForegroundColor Cyan
 $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss K"
 @"
-TAS v70.20.2 Commercial Gateway validation passed.
+TAS v70.20.3 Commercial Gateway validation passed.
 Time: $stamp
 Mode: Local only
 Git: no commit, no push
@@ -59,7 +59,7 @@ Command: npm ci + npm run validate
 "@ | Set-Content ".\LOCAL_VALIDATION_PASSED.txt" -Encoding UTF8
 
 Write-Host ""
-Write-Host "[PASS] TAS v70.20.2 Commercial Gateway and all three editions are clean-build validated." -ForegroundColor Green
+Write-Host "[PASS] TAS v70.20.3 Commercial Gateway and all three editions are clean-build validated." -ForegroundColor Green
 Write-Host "Report: TAS_V70_20_COMMUNITY_VALIDATION_REPORT.md"
 Write-Host "Professional preview: double-click RUN_ME_LOCAL_CLOUDFLARE_READY.cmd
 Edition previews: double-click RUN_ME_LOCAL_EDITION_PREVIEWS.cmd"

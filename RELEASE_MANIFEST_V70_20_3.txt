@@ -1,0 +1,16 @@
+TAS v70.20.3 COMMERCIAL DELIVERY STUDIO
+
+Protected base: TAS v70.20 Community / AURORA commercial architecture
+Public landing: Member Gateway
+Free experience: separate synthetic AURORA Demo
+Commercial builds: Professional and Consultant remain independent
+Installer: TAS_Professional_v10_0_6_x64.msi
+Installer bytes: 57,430,016
+Installer SHA-256: f59a8682e78b94eff561b44db66fc61089c8f5156f82f5d0a7bf54099b5da249
+Installer public: NO
+Entitled-vault preview: YES
+Guided tour: MP4 + SRT + VTT + poster + automation script
+Workspace parity: row-to-detail, Golden-to-detail, independent scrolling, adjustable splitter
+Deployment performed: NO
+DEPLOYMENT HOTFIX 3
+The Git deployment copy now includes the complete demo-automation folder and verifies it before rebuilding or committing.

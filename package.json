@@ -1,8 +1,8 @@
 {
-  "name": "tas-v70-20-2-commercial-gateway",
-  "version": "70.20.2",
+  "name": "tas-v70-20-3-commercial-delivery-studio",
+  "version": "70.20.3",
   "private": true,
-  "description": "Telemetry Assurance Studio v70.20.2 Commercial Gateway \u2014 AURORA member landing, synthetic interactive demo and protected licensed delivery boundary",
+  "description": "Telemetry Assurance Studio v70.20.3 Commercial Delivery Studio \u2014 verified MSI, guided product tour, licence-aware member vault and desktop interaction parity",
   "engines": {
     "node": ">=22 <25",
     "npm": ">=10 <12"
@@ -38,8 +38,8 @@
     "test:deploy-runner": "node scripts/test-v70-18-deploy-runner.cjs",
     "test:project-separation": "node scripts/test-tas-project-separation.cjs",
     "test:foundation-lock": "node scripts/test-v70-18-1-foundation-lock.cjs",
-    "test:regression": "npm run test:inherited && npm run build:editions && npm run build:demo && npm run test:sprint1 && npm run test:sprint2 && npm run test:commercial-gateway && npm run test:demo-boundary",
-    "validate": "npm run build:commercial && npm run test:inherited && npm run build:editions && npm run build:demo && npm run test:sprint1 && npm run test:sprint2 && npm run test:commercial-gateway && npm run test:demo-boundary && npm run write:validation-report && npm run write:member-validation && npm run write:gateway-validation && npm run prepare:cloudflare-dist && npm run test:public-dist",
+    "test:regression": "npm run test:inherited && npm run build:editions && npm run build:demo && npm run test:sprint1 && npm run test:sprint2 && npm run test:commercial-gateway && npm run test:demo-boundary && npm run test:workspace-parity && npm run prepare:cloudflare-dist && npm run prepare:entitled-vault && npm run test:public-dist && npm run test:commercial-delivery",
+    "validate": "npm run build:commercial && npm run test:inherited && npm run build:editions && npm run build:demo && npm run test:sprint1 && npm run test:sprint2 && npm run test:commercial-gateway && npm run test:demo-boundary && npm run test:workspace-parity && npm run write:validation-report && npm run write:member-validation && npm run write:gateway-validation && npm run write:delivery-validation && npm run prepare:cloudflare-dist && npm run prepare:entitled-vault && npm run test:public-dist && npm run test:commercial-delivery",
     "build": "npm run validate",
     "write:validation-report": "node scripts/write-validation-report.cjs",
     "test:repository-copy": "node scripts/test-v70-18-1-repository-copy.cjs",
@@ -66,7 +66,13 @@
     "test:commercial-gateway": "node scripts/test-v70-20-2-commercial-gateway.cjs",
     "test:demo-boundary": "node scripts/test-v70-20-2-demo-boundary.cjs",
     "test:public-dist": "node scripts/test-v70-20-2-public-dist.cjs",
-    "write:gateway-validation": "node scripts/write-v70-20-2-validation-report.cjs"
+    "write:gateway-validation": "node scripts/write-v70-20-2-validation-report.cjs",
+    "prepare:entitled-vault": "node scripts/prepare-entitled-vault.cjs",
+    "test:workspace-parity": "node scripts/test-v70-20-3-workspace-parity.cjs",
+    "test:commercial-delivery": "node scripts/test-v70-20-3-commercial-delivery.cjs",
+    "write:delivery-validation": "node scripts/write-v70-20-3-validation-report.cjs",
+    "preview:public": "node scripts/serve-output.cjs --dir=dist --port=8787",
+    "preview:entitled": "node scripts/serve-output.cjs --dir=dist-entitled --port=8788"
   },
   "dependencies": {
     "lucide-react": "1.23.0",
